@@ -55,22 +55,46 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
     if (isset($_PUT['name'])) { //Редактирование имени пользователя
         $name = $_PUT['name'];
         $user_id = $userData['user_id'];
-        $updateUser = mysqli_query($connection, "UPDATE users SET name = [$name] WHERE user_id = '$user_id'");
+        $query = "UPDATE users SET name = [$name] WHERE user_id = '$user_id'";
+        $updateUser = mysqli_query($connection, $query);
+        if ($updateUser) { // Успешное редактирование пользователя
+            echo "Имя пользователя успешно обновлено";
+        } else { // Ошибка при редактировании
+            echo "Ошибка при обновлении имени пользователя";
+        }
     }
     if (isset($_PUT['email'])) { //Редактирование почты пользователя
         $email = $_PUT['email'];
         $user_id = $userData['user_id'];
-        $updateUser = mysqli_query($connection, "UPDATE users SET email = [$email] WHERE user_id = '$user_id'");
+        $query = "UPDATE users SET email = [$email] WHERE user_id = '$user_id'";
+        $updateUser = mysqli_query($connection, $query);
+        if ($updateUser) { // Успешное редактирование пользователя
+            echo "Имя пользователя успешно обновлено";
+        } else { // Ошибка при редактировании
+            echo "Ошибка при обновлении имени пользователя";
+        }
     }
     if (isset($_PUT['password'])) { //Редактирование пароля пользователя
         $password = $_PUT['password'];
         $user_id = $userData['user_id'];
-        $updateUser = mysqli_query($connection, "UPDATE users SET password = [$password] WHERE user_id = '$user_id'");
+        $query = "UPDATE users SET password = [$password] WHERE user_id = '$user_id'";
+        $updateUser = mysqli_query($connection, $query);
+        if ($updateUser) { // Успешное редактирование пользователя
+            echo "Имя пользователя успешно обновлено";
+        } else { // Ошибка при редактировании
+            echo "Ошибка при обновлении имени пользователя";
+        }
     }
     if (isset($_PUT['number'])) { //Редактирование почты пользователя
         $number = $_PUT['number'];
         $user_id = $userData['user_id'];
-        $updateUser = mysqli_query($connection, "UPDATE users SET number = [$number] WHERE user_id = '$user_id'");
+        $query = "UPDATE users SET number = [$number] WHERE user_id = '$user_id'";
+        $updateUser = mysqli_query($connection, $query);
+        if ($updateUser) { // Успешное редактирование пользователя
+            echo "Имя пользователя успешно обновлено";
+        } else { // Ошибка при редактировании
+            echo "Ошибка при обновлении имени пользователя";
+        }
     }
 }
 
