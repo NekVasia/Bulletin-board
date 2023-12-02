@@ -8,20 +8,18 @@
 $connection = mysqli_connect("localhost", "root", "", "bulletin-board");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация нового пользователя
-    if (isset($_POST['name'])) {
-        $name = $_POST['name'];
-    }
-    if (isset($_POST['email'])) {
-        $email = $_POST['email'];
-    }
-    if (isset($_POST['password'])) {
-        $password = $_POST['password'];
-    }
-    if (isset($_POST['number'])) {
-        $number = $_POST['number'];
-    }
+    $name = $_POST['name'] ?? ''; //Значение устанавливается в том случае, если поле было передано через $_POST
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $number = $_POST['number'] ?? '';
     if (!empty($connection)) {
-        $registration = mysqli_query($connection, "INSERT INTO users (name, email, password, number) VALUES ('$name', '$email', '$password', '$number')");
+        $query = "INSERT INTO users (name, email, password, number) VALUES ('$name', '$email', '$password', '$number')";
+        $registration = mysqli_query($connection, $query);
+        if ($registration) { //Успешная регистрация
+            echo "Пользователь успешно зарегистрирован";
+        } else { //Ошибка при регистрации
+            echo "Ошибка при регистрации пользователя";
+        }
     }
 }
 
