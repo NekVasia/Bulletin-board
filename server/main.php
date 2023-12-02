@@ -27,26 +27,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация новог�
 
 
 
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
     if (isset($_GET['user_id'])) { //Поиск по id
         $user_id = $_GET['user_id'];
-        $searchUser = mysqli_query($connection, "SELECT user_id, name, email, password, number, created_at FROM users WHERE user_id = '$user_id'");
+        $query = "SELECT user_id, name, email, password, number, created_at FROM users WHERE user_id = '$user_id'";
+        $searchUser = mysqli_query($connection, $query);
+        if ($searchUser) { // Успешный поиск пользователя
+            if (mysqli_num_rows($searchUser) == 1) { //Если пользователь найден
+                $userData = mysqli_fetch_assoc($searchUser); //Возвращаем данные пользователя в формате JSON
+                echo json_encode($userData); //Вывод полученных данных
+            } else { //Если пользователь не найден
+                echo "Пользователь с id = $user_id не найден";
+            }
+        } else { //Если ошибка при выполнении поиска
+            echo "Ошибка при выполнении поиска пользователя";
+        }
     }
+
     if (isset($_GET['name'])) { //Поиск по name
         $name = $_GET['name'];
-        $searchUser = mysqli_query($connection, "SELECT user_id, name, email, password, number, created_at FROM users WHERE name = '$name'");
+        $query = "SELECT user_id, name, email, password, number, created_at FROM users WHERE name = '$name'";
+        $searchUser = mysqli_query($connection, $query);
+        if ($searchUser) { // Успешный поиск пользователей
+            if (mysqli_num_rows($searchUser) > 0) { //Если пользователи найдены
+                $userData = mysqli_fetch_assoc($searchUser); //Возвращаем данные пользователей в формате JSON
+                echo json_encode($userData); //Вывод подученных данных
+            } else { //Если пользователи не найдены
+                echo "Пользователь с именем $name не найден";
+            }
+        } else { //Если ошибка при выполнении поиска
+            echo "Ошибка при выполнении поиска пользователей";
+        }
     }
+
     if (isset($_GET['email'])) { //Поиск по email
         $email = $_GET['email'];
-        $searchUser = mysqli_query($connection, "SELECT user_id, name, email, password, number, created_at FROM users WHERE email = '$email'");
-    }
-    if (mysqli_num_rows($searchUser) == 0) { //Ошибка поиска
-        echo $searchError = "Пользователь не найден";
-    }
-    else { //Вывод всех пользователей
-        $searchUser = mysqli_query($connection, "SELECT user_id, name, email, password, number, created_at FROM users");
+        $query = "SELECT user_id, name, email, password, number, created_at FROM users WHERE email = '$email'";
+        $searchUser = mysqli_query($connection, $query);
+        if ($searchUser) { // Успешный поиск пользователей
+            if (mysqli_num_rows($searchUser) == 1) { //Если пользователь найден
+                $userData = mysqli_fetch_assoc($searchUser); //Возвращаем данные пользователей в формате JSON
+                echo json_encode($userData); //Вывод подученных данных
+            } else { //Если пользователь не найден
+                echo "Пользователь с почтой $email не найден";
+            }
+        } else { //Если ошибка при выполнении поиска
+            echo "Ошибка при выполнении поиска пользователей";
+        }
     }
 }
+
+
+
 
 $inputData = file_get_contents('php://input');
 $userData = json_decode($inputData, true);
@@ -63,6 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
             echo "Ошибка при обновлении имени пользователя";
         }
     }
+
     if (isset($_PUT['email'])) { //Редактирование почты пользователя
         $email = $_PUT['email'];
         $user_id = $userData['user_id'];
@@ -74,6 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
             echo "Ошибка при обновлении имени пользователя";
         }
     }
+
     if (isset($_PUT['password'])) { //Редактирование пароля пользователя
         $password = $_PUT['password'];
         $user_id = $userData['user_id'];
@@ -85,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
             echo "Ошибка при обновлении имени пользователя";
         }
     }
+
     if (isset($_PUT['number'])) { //Редактирование почты пользователя
         $number = $_PUT['number'];
         $user_id = $userData['user_id'];
@@ -97,6 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
         }
     }
 }
+
 
 
 
