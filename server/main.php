@@ -20,10 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация новог�
     if (isset($_POST['number'])) {
         $number = $_POST['number'];
     }
-    if (empty($connection)) {
+    if (!empty($connection)) {
         $registration = mysqli_query($connection, "INSERT INTO users (name, email, password, number) VALUES ('$name', '$email', '$password', '$number')");
     }
 }
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
     if (isset($_GET['user_id'])) { //Поиск по id
@@ -46,9 +48,40 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
     }
 }
 
+$inputData = file_get_contents('php://input');
+$userData = json_decode($inputData, true);
+
 if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование записи пользователя
-    if (isset($_GET['name'])) {
-        $name = $_GET['name'];
-        $searchUser = mysqli_query($connection, "SELECT user_id, name, email, password, number, created_at FROM users WHERE name = '$name'");
+    if (isset($_PUT['name'])) { //Редактирование имени пользователя
+        $name = $_PUT['name'];
+        $user_id = $userData['user_id'];
+        $updateUser = mysqli_query($connection, "UPDATE users SET name = [$name] WHERE user_id = '$user_id'");
+    }
+    if (isset($_PUT['email'])) { //Редактирование почты пользователя
+        $email = $_PUT['email'];
+        $user_id = $userData['user_id'];
+        $updateUser = mysqli_query($connection, "UPDATE users SET email = [$email] WHERE user_id = '$user_id'");
+    }
+    if (isset($_PUT['password'])) { //Редактирование пароля пользователя
+        $password = $_PUT['password'];
+        $user_id = $userData['user_id'];
+        $updateUser = mysqli_query($connection, "UPDATE users SET password = [$password] WHERE user_id = '$user_id'");
+    }
+    if (isset($_PUT['number'])) { //Редактирование почты пользователя
+        $number = $_PUT['number'];
+        $user_id = $userData['user_id'];
+        $updateUser = mysqli_query($connection, "UPDATE users SET number = [$number] WHERE user_id = '$user_id'");
+    }
+}
+
+
+
+$inputData = file_get_contents('php://input');
+$userData = json_decode($inputData, true);
+
+if ($_SERVER["REQUEST_METHOD"] == "DELETE") { //Удаление пользователя
+    $user_id = $userData['user_id'];
+    if (!empty($connection)) {
+        $accountDeleting = mysqli_query($connection, "DELETE FROM users WHERE user_id = '$user_id'");
     }
 }
