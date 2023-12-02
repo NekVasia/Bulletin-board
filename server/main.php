@@ -79,9 +79,15 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
 $inputData = file_get_contents('php://input');
 $userData = json_decode($inputData, true);
 
-if ($_SERVER["REQUEST_METHOD"] == "DELETE") { //Удаление пользователя
+if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
     $user_id = $userData['user_id'];
     if (!empty($connection)) {
-        $accountDeleting = mysqli_query($connection, "DELETE FROM users WHERE user_id = '$user_id'");
+        $query = "DELETE FROM users WHERE user_id = '$user_id'";
+        $accountDeleting = mysqli_query($connection, $query);
+        if ($accountDeleting) { // Успешно удалено
+            echo "Пользователь успешно удален";
+        } else { // Ошибка при удалении
+            echo "Ошибка при удалении пользователя";
+        }
     }
 }
