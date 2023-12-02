@@ -1,10 +1,12 @@
 <?php
 
+require_once('../src/dto/RegistrationDTO.php');
+require_once('../src/validator/RegistrationValidator.php');
+
 //1. [Идет в зачет] Сделать REST API (по аналогии с разобранным на занятии)
 //    для сущности пользователя (пять базовых методов) - идет в зачет.
 //2. [Пойдет в зачет позже] Сделать основные методы REST API для нашей доски объявлений.
 //Домашка по методам
-
 
 
 $connection = mysqli_connect("localhost", "root", "", "bulletin-board");
@@ -13,42 +15,31 @@ if (!$connection) {
 }
 
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация нового пользователя
-    $name = $_POST['name'] ?? ''; //Значение устанавливается в том случае, если поле было передано через $_POST
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $number = $_POST['number'] ?? '';
-    if (!empty($connection)) {
-        if (!empty($name) && !empty($email) && !empty($password) && !empty($number)) {
-            $query = "INSERT INTO users (name, email, password, number) VALUES ('$name', '$email', '$password', '$number')";
-            $registration = mysqli_query($connection, $query);
-            if ($registration) { //Успешная регистрация
-                echo "Пользователь успешно зарегистрирован";
-            } else { //Ошибка при регистрации
-                echo "Ошибка при регистрации пользователя";
-            }
-        } else {
-            echo "Некорректные данные для регистрации пользователя";
+    $dto = new RegistrationDTO(
+        name: $_POST['name'] ?? '', //Значение устанавливается в том случае, если поле было передано через $_POST
+        email: $_POST['email'] ?? '',
+        password: $_POST['password'] ?? '',
+        phone: $_POST['phone'] ?? '',
+    );
+    $validator = new RegistrationValidator();
+    if ($validator->validate($dto)) {
+        $query = "INSERT INTO users (name, email, password, phone) VALUES ($dto->name, $dto->email, $dto->password, $dto->phone)";
+        $registration = mysqli_query($connection, $query);
+        if ($registration) { //Успешная регистрация
+            echo "Пользователь успешно зарегистрирован";
+        } else { //Ошибка при регистрации
+            echo "Ошибка при регистрации пользователя";
         }
     }
 }
 
 
-
-
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
     if (isset($_GET['user_id'])) { //Поиск по id
         $user_id = $_GET['user_id'];
-        //$query = "SELECT user_id, name, email, password, number, created_at FROM users WHERE user_id = '$user_id'";
-        $searchUser = mysqli_query($connection, "SELECT user_id, name, email, password, number, created_at FROM users WHERE user_id = '$user_id'");
-        while ($user = mysqli_fetch_assoc($searchUser)) {
-            echo "Пользователь под id = " . $user_id;
-            echo $user["name"];
-            echo $user["email"];
-            echo $user["number"];
-        }
-
+        $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE user_id = '$user_id'";
+        $searchUser = mysqli_query($connection, $query);
         if ($searchUser) { // Успешный поиск пользователя
             if (mysqli_num_rows($searchUser) == 1) { //Если пользователь найден
                 $userData = mysqli_fetch_assoc($searchUser); //Возвращаем данные пользователя в формате JSON
@@ -63,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
 
     if (isset($_GET['name'])) { //Поиск по name
         $name = $_GET['name'];
-        $query = "SELECT user_id, name, email, password, number, created_at FROM users WHERE name = '$name'";
+        $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE name = '$name'";
         $searchUser = mysqli_query($connection, $query);
         if ($searchUser) { // Успешный поиск пользователей
             if (mysqli_num_rows($searchUser) > 0) { //Если пользователи найдены
@@ -79,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
 
     if (isset($_GET['email'])) { //Поиск по email
         $email = $_GET['email'];
-        $query = "SELECT user_id, name, email, password, number, created_at FROM users WHERE email = '$email'";
+        $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE email = '$email'";
         $searchUser = mysqli_query($connection, $query);
         if ($searchUser) { // Успешный поиск пользователей
             if (mysqli_num_rows($searchUser) > 0) { //Если пользователь найден
@@ -93,8 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
         }
     }
 }
-
-
 
 
 $inputData = file_get_contents('php://input');
@@ -137,10 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
         }
     }
 
-    if (isset($_PUT['number'])) { //Редактирование почты пользователя
-        $number = $_PUT['number'];
+    if (isset($_PUT['phone'])) { //Редактирование почты пользователя
+        $phone = $_PUT['phone'];
         $user_id = $userData['user_id'];
-        $query = "UPDATE users SET number = [$number] WHERE user_id = '$user_id'";
+        $query = "UPDATE users SET phone = [$phone] WHERE user_id = '$user_id'";
         $updateUser = mysqli_query($connection, $query);
         if ($updateUser) { // Успешное редактирование пользователя
             echo "Имя пользователя успешно обновлено";
@@ -149,8 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
         }
     }
 }
-
-
 
 
 $inputData = file_get_contents('php://input');
