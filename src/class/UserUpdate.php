@@ -8,7 +8,7 @@ class UserUpdate
         $this->connection = $connection;
     }
     public function updateName($user_id, $name) {
-        $query = "UPDATE users SET name = '[$name]' WHERE user_id = '$user_id'";
+        $query = "UPDATE users SET name = '$name' WHERE user_id = '$user_id'";
         $updateUser = mysqli_query($this->connection, $query);
         if ($updateUser) { // Успешное редактирование пользователя
             echo "Имя пользователя успешно обновлено";
@@ -18,7 +18,7 @@ class UserUpdate
     }
 
     public function updateEmail($user_id, $email) {
-        $query = "UPDATE users SET email = '[$email]' WHERE user_id = '$user_id'";
+        $query = "UPDATE users SET email = '$email' WHERE user_id = '$user_id'";
         $updateUser = mysqli_query($this->connection, $query);
         if ($updateUser) { // Успешное редактирование пользователя
             echo "Имя пользователя успешно обновлено";
@@ -28,7 +28,7 @@ class UserUpdate
     }
 
     public function updatePassword($user_id, $password) {
-        $query = "UPDATE users SET password = '[$password]' WHERE user_id = '[$user_id]'";
+        $query = "UPDATE users SET password = '$password' WHERE user_id = '[$user_id]'";
         $updateUser = mysqli_query($this->connection, $query);
         if ($updateUser) { // Успешное редактирование пользователя
             echo "Имя пользователя успешно обновлено";
@@ -38,7 +38,7 @@ class UserUpdate
     }
 
     public function updatePhone($user_id, $phone) {
-        $query = "UPDATE users SET phone = '[$phone]' WHERE user_id = '[$user_id]'";
+        $query = "UPDATE users SET phone = '$phone' WHERE user_id = '[$user_id]'";
         $updateUser = mysqli_query($this->connection, $query);
         if ($updateUser) { // Успешное редактирование пользователя
             echo "Имя пользователя успешно обновлено";
