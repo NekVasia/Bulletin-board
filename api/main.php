@@ -1,8 +1,5 @@
 <?php
 
-require_once('../src/dto/RegistrationDTO.php');
-require_once('../src/validator/RegistrationValidator.php');
-
 //1. [Идет в зачет] Сделать REST API (по аналогии с разобранным на занятии)
 //    для сущности пользователя (пять базовых методов) - идет в зачет.
 //2. [Пойдет в зачет позже] Сделать основные методы REST API для нашей доски объявлений.
@@ -14,25 +11,27 @@ if (!$connection) {
     die("Ошибка подключения: " . mysqli_connect_error());
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация нового пользователя
-    $dto = new RegistrationDTO(
-        name: $_POST['name'] ?? '', //Значение устанавливается в том случае, если поле было передано через $_POST
-        email: $_POST['email'] ?? '',
-        password: $_POST['password'] ?? '',
-        phone: $_POST['phone'] ?? '',
-    );
-    $validator = new RegistrationValidator();
-    if ($validator->validate($dto)) {
-        $query = "INSERT INTO users (name, email, password, phone) VALUES ($dto->name, $dto->email, $dto->password, $dto->phone)";
-        $registration = mysqli_query($connection, $query);
-        if ($registration) { //Успешная регистрация
-            echo "Пользователь успешно зарегистрирован";
-        } else { //Ошибка при регистрации
-            echo "Ошибка при регистрации пользователя";
+    $name = $_POST['name'] ?? ''; //Значение устанавливается в том случае, если поле было передано через $_POST
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    if (!empty($connection)) {
+        if (!empty($name) && !empty($email) && !empty($password) && !empty($phone)) {
+            $query = "INSERT INTO users (name, email, password, phone) VALUES ('$name', '$email', '$password', '$phone')";
+            $registration = mysqli_query($connection, $query);
+            if ($registration) { //Успешная регистрация
+                echo "Пользователь успешно зарегистрирован";
+            } else { //Ошибка при регистрации
+                echo "Ошибка при регистрации пользователя";
+            }
+        } else {
+            echo "Некорректные данные для регистрации пользователя";
         }
     }
 }
+
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
@@ -93,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
     if (isset($_PUT['name'])) { //Редактирование имени пользователя
         $name = $_PUT['name'];
         $user_id = $userData['user_id'];
+        $user_id = 1;
         $query = "UPDATE users SET name = [$name] WHERE user_id = '$user_id'";
         $updateUser = mysqli_query($connection, $query);
         if ($updateUser) { // Успешное редактирование пользователя
