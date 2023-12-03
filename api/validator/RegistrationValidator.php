@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
-require_once ('../src/dto/RegistrationDTO.php');
+namespace validator;
+
+use dto\RegistrationDTO;
+
+require_once('../src/dto/RegistrationDTO.php');
 
 final class RegistrationValidator
 {

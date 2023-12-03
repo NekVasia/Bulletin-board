@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+namespace dto;
 final class RegistrationDTO
 {
     public function __construct(
