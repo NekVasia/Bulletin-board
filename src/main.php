@@ -1,6 +1,6 @@
 <?php
 
-//require_once ('class/Database.php');
+require_once ('class/Database.php');
 require_once('class/UserRegistration.php');
 require_once('class/UserSearch.php');
 require_once('class/UserUpdate.php');
@@ -8,10 +8,10 @@ require_once('class/UserDelete.php');
 require_once('class/ProductCreation.php');
 require_once('class/ProductSearch.php');
 
-$connection = mysqli_connect("localhost", "root", "", "bulletin-board");
-if (!$connection) {
-    die("Ошибка подключения: " . mysqli_connect_error());
-}
+//$connection = mysqli_connect("localhost", "root", "", "bulletin-board");
+//if (!$connection) {
+//    die("Ошибка подключения: " . mysqli_connect_error());
+//}
 
 $inputData = file_get_contents('php://input');
 $userData = json_decode($inputData, true);
@@ -24,12 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация новог�
     $password = $_POST['password'] ?? '';
     $phone = $_POST['phone'] ?? '';
 
-    $userRegistration = new UserRegistration($connection);
+    $userRegistration = new UserRegistration();
     $userRegistration->userRegistration($name, $email, $password, $phone);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
-    $userSearch = new UserSearch($connection);
+    $userSearch = new UserSearch();
 
     if (isset($_GET['user_id'])) { //Поиск по id
         $userId = $_GET['user_id'];
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование записи пользователя
-    $userUpdate = new UserUpdate($connection);
+    $userUpdate = new UserUpdate();
     if (!isset($userData['user_id'])) {
         echo "Не передан 'user_id'";
         return;
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
 if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
     $userId = $userData['user_id']; //$user_id = 13; Так работает
 
-    $userDelete = new UserDelete($connection);
+    $userDelete = new UserDelete();
     $userDelete->deleteUser($userId);
 }
 
@@ -88,12 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового об
     $sum = $_POST['sum'];
     $image = $_POST['image'];
 
-    $productCreation = new ProductCreation($connection);
+    $productCreation = new ProductCreation();
     $productCreation->productCreation($userId, $title, $about, $sum, $image);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товара
-    $productSearch = new ProductSearch($connection);
+    $productSearch = new ProductSearch();
 
     if (isset($_GET['user_id'])) { //Поиск по id
         $userId = 1; //$userData['user_id'];

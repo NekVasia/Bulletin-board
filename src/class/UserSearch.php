@@ -1,16 +1,11 @@
 <?php
+require_once ("Database.php");
 
 class UserSearch
 {
-    private $connection;
-    public function __construct($connection)
-    {
-        $this->connection = $connection;
-    }
     public function searchById($userId) {
         settype($userId, 'integer');
-        $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE user_id = '$userId'";
-        $searchUser = mysqli_query($this->connection, $query);
+        $searchUser = Database::query("SELECT user_id, name, email, password, phone, created_at FROM users WHERE user_id = '$userId'");
         if ($searchUser) { // Успешный поиск пользователя
             if (mysqli_num_rows($searchUser) == 1) { //Если пользователь найден
                 $userData = mysqli_fetch_assoc($searchUser); //Возвращаем данные пользователя в формате JSON
@@ -25,8 +20,7 @@ class UserSearch
 
     public function searchByName($name) {
         settype($name, 'string');
-        $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE name = '$name'";
-        $searchUser = mysqli_query($this->connection, $query);
+        $searchUser = Database::query("SELECT user_id, name, email, password, phone, created_at FROM users WHERE name = '$name'");
         if ($searchUser) { // Успешный поиск пользователей
             if (mysqli_num_rows($searchUser) > 0) { //Если пользователи найдены
                 $userData = mysqli_fetch_assoc($searchUser); //Возвращаем данные пользователей в формате JSON
@@ -40,8 +34,7 @@ class UserSearch
     }
 
     public function searchByEmail($email) {
-        $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE email = '$email'";
-        $searchUser = mysqli_query($this->connection, $query);
+        $searchUser = Database::query("SELECT user_id, name, email, password, phone, created_at FROM users WHERE email = '$email'");
         if ($searchUser) { // Успешный поиск пользователей
             if (mysqli_num_rows($searchUser) > 0) { //Если пользователь найден
                 $userData = mysqli_fetch_assoc($searchUser); //Возвращаем данные пользователей в формате JSON

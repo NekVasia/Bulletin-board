@@ -1,15 +1,10 @@
 <?php
+require_once ("Database.php");
 
 class UserDelete
 {
-    private $connection;
-    public function __construct($connection)
-    {
-        $this->connection = $connection;
-    }
     public function deleteUser($userId) {
-        $query = "DELETE FROM users WHERE user_id = '$userId'";
-        $accountDeleting = mysqli_query($this->connection, $query);
+        $accountDeleting = Database::query("DELETE FROM users WHERE user_id = '$userId'");
         if ($accountDeleting) { // Успешно удалено
             echo "Пользователь успешно удален";
         } else { // Ошибка при удалении
