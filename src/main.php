@@ -6,6 +6,7 @@ require_once('class/UserSearch.php');
 require_once('class/UserUpdate.php');
 require_once('class/UserDelete.php');
 require_once('class/ProductCreation.php');
+require_once('class/ProductSearch.php');
 
 $connection = mysqli_connect("localhost", "root", "", "bulletin-board");
 if (!$connection) {
@@ -91,4 +92,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового об
     $productCreation->productCreation($userId, $title, $about, $sum, $image);
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товара
+    $productSearch = new ProductSearch($connection);
 
+    if (isset($_GET['user_id'])) { //Поиск по id
+        $userId = 1; //$userData['user_id'];
+        $productSearch->searchProduct($userId);
+    }
+}
