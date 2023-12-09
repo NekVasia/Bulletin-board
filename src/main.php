@@ -1,6 +1,6 @@
 <?php
 
-//require_once ('class/Connect.php');
+//require_once ('class/Database.php');
 require_once('class/UserRegistration.php');
 require_once('class/UserSearch.php');
 require_once('class/UserUpdate.php');
@@ -79,6 +79,14 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользов
 
 
 //REST API для таблицы product
+if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового объявления
+    $title = $_POST['title'] ?? ''; //Значение устанавливается в том случае, если поле было передано через $_POST
+    $about = $_POST['about'] ?? '';
+    $sum = $_POST['sum'] ?? '';
+    $image = $_POST['image'] ?? '';
 
+    $productCreation = new ProductCreation($connection);
+    $productCreation->productCreation($title, $about, $sum, $image);
+}
 
 

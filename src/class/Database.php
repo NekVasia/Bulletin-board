@@ -1,6 +1,6 @@
 <?php
 
-class Connect {
+class Database {
 
     private static $connection; //Создаем соединение в SQL
     public static function connect() {
