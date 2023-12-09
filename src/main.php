@@ -68,12 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
     }
 }
 
-//if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
-//    $userId = $userData['user_id']; //$user_id = 13; Так работает
-//
-//    $userDelete = new UserDelete();
-//    $userDelete->deleteUser($userId);
-//}
+if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
+    $userId = $userData['user_id']; //$user_id = 13; Так работает
+
+    $userDelete = new UserDelete();
+    $userDelete->deleteUser($userId);
+}
 
 
 
