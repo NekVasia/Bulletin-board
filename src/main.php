@@ -5,6 +5,7 @@ require_once('class/UserRegistration.php');
 require_once('class/UserSearch.php');
 require_once('class/UserUpdate.php');
 require_once('class/UserDelete.php');
+require_once('class/ProductCreation.php');
 
 $connection = mysqli_connect("localhost", "root", "", "bulletin-board");
 if (!$connection) {
@@ -80,13 +81,14 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользов
 
 //REST API для таблицы product
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового объявления
-    $title = $_POST['title'] ?? ''; //Значение устанавливается в том случае, если поле было передано через $_POST
-    $about = $_POST['about'] ?? '';
-    $sum = $_POST['sum'] ?? '';
-    $image = $_POST['image'] ?? '';
+    $userId = 1; //$userData['user_id'];
+    $title = $_POST['title'];
+    $about = $_POST['about'];
+    $sum = $_POST['sum'];
+    $image = $_POST['image'];
 
     $productCreation = new ProductCreation($connection);
-    $productCreation->productCreation($title, $about, $sum, $image);
+    $productCreation->productCreation($userId, $title, $about, $sum, $image);
 }
 
 
