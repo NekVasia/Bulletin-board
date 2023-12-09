@@ -12,7 +12,28 @@ class ProductCreation
     public function productCreation($userId, $title, $about, $sum, $image)
     {
         if (!empty($this->connection)) {
-            $query = "INSERT INTO product (user_id, title, about, sum, image) VALUES ('$userId', '$title', '$about', '$sum', '$image')";
+            if (!empty($userId)) {
+                $queryField = "user_id";
+                $queryValue = "'$userId'";
+            }
+            if (!empty($title)) {
+                $queryField = $queryField . ", title";
+                $queryValue = $queryValue . ", '$title'";
+            }
+            if (!empty($about)) {
+                $queryField = $queryField . ", about";
+                $queryValue = $queryValue . ", '$about'";
+            }
+            if (!empty($sum)) {
+                $queryField = $queryField . ", sum";
+                $queryValue = $queryValue . ", '$sum'";
+            }
+            if (!empty($image)) {
+                $queryField = $queryField . ", image";
+                $queryValue = $queryValue . ", '$image'";
+            }
+            echo "$queryField и $queryValue";
+            $query = "INSERT INTO product ($queryField) VALUES ($queryValue)";
             $creation = mysqli_query($this->connection, $query);
             if ($creation) { // Успешная регистрация
                 echo "Товар успешно создан";
