@@ -7,11 +7,8 @@ require_once('class/UserUpdate.php');
 require_once('class/UserDelete.php');
 require_once('class/ProductCreation.php');
 require_once('class/ProductSearch.php');
+require_once('class/ProductDelete.php');
 
-//$connection = mysqli_connect("localhost", "root", "", "bulletin-board");
-//if (!$connection) {
-//    die("Ошибка подключения: " . mysqli_connect_error());
-//}
 
 $inputData = file_get_contents('php://input');
 $userData = json_decode($inputData, true);
@@ -71,12 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование зап
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
-    $userId = $userData['user_id']; //$user_id = 13; Так работает
-
-    $userDelete = new UserDelete();
-    $userDelete->deleteUser($userId);
-}
+//if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
+//    $userId = $userData['user_id']; //$user_id = 13; Так работает
+//
+//    $userDelete = new UserDelete();
+//    $userDelete->deleteUser($userId);
+//}
 
 
 
@@ -99,4 +96,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товар�
         $userId = 1; //$userData['user_id'];
         $productSearch->searchProduct($userId);
     }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
+    $productId = $userData['product_id']; //$productId = 2; Так работает
+
+    $productDelete = new ProductDelete();
+    $productDelete->deleteProduct($productId);
 }
