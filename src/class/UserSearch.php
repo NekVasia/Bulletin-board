@@ -8,6 +8,7 @@ class UserSearch
         $this->connection = $connection;
     }
     public function searchById($userId) {
+        settype($userId, 'integer');
         $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE user_id = '$userId'";
         $searchUser = mysqli_query($this->connection, $query);
         if ($searchUser) { // Успешный поиск пользователя
@@ -23,6 +24,7 @@ class UserSearch
     }
 
     public function searchByName($name) {
+        settype($name, 'string');
         $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE name = '$name'";
         $searchUser = mysqli_query($this->connection, $query);
         if ($searchUser) { // Успешный поиск пользователей
