@@ -7,15 +7,15 @@ class UserSearch
     {
         $this->connection = $connection;
     }
-    public function searchById($user_id) {
-        $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE user_id = '$user_id'";
+    public function searchById($userId) {
+        $query = "SELECT user_id, name, email, password, phone, created_at FROM users WHERE user_id = '$userId'";
         $searchUser = mysqli_query($this->connection, $query);
         if ($searchUser) { // Успешный поиск пользователя
             if (mysqli_num_rows($searchUser) == 1) { //Если пользователь найден
                 $userData = mysqli_fetch_assoc($searchUser); //Возвращаем данные пользователя в формате JSON
                 echo json_encode($userData); //Вывод полученных данных
             } else { //Если пользователь не найден
-                echo "Пользователь с id = $user_id не найден";
+                echo "Пользователь с id = $userId не найден";
             }
         } else { //Если ошибка при выполнении поиска
             echo "Ошибка при выполнении поиска пользователя";
