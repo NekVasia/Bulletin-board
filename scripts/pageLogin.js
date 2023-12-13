@@ -61,7 +61,7 @@
     }
 
     function goToRegister() {
-        document.querySelector('section').innerHTML = '';
+        document.querySelector(".section").remove();
         app.pageRegistration.draw();
     }
 })(AdsBoard);

@@ -96,7 +96,7 @@
         }
     }
     function goToLogin() {
-        document.querySelector('section').innerHTML = '';
+        document.querySelector(".section").remove();
         app.pageLogin.draw();
     }
 })(AdsBoard);
