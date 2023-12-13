@@ -54,16 +54,12 @@
 .section {
     display: flex;
     justify-content: center;
+    height: 100vh;
 }
 
 .section__container {
     line-height: 100%;
-    margin-top: 275px;
-}
-
-.section__container2 {
-    line-height: 100%;
-    margin-top: 105px;
+    align-self: center;
 }
 
 .section__container_title {

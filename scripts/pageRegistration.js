@@ -5,7 +5,7 @@
             section.className = 'section';
 
             let container = document.createElement('div');
-            container.className = 'section__container2';
+            container.className = 'section__container';
 
             let title = document.createElement('h2');
             title.className = 'section__container_title h2';
@@ -15,6 +15,7 @@
             cell1.className = 'section__container__cell';
             let input1 = document.createElement('input');
             input1.className = 'section__input';
+            input1.id = 'email';
             let p1 = document.createElement('p');
             p1.className = 'p__input';
             p1.textContent = 'E-mail';
@@ -23,6 +24,7 @@
             cell2.className = 'section__container__cell';
             let input2 = document.createElement('input');
             input2.className = 'section__input';
+            input2.id = 'phone';
             let p2 = document.createElement('p');
             p2.className = 'p__input';
             p2.textContent = 'Телефон';
@@ -31,6 +33,7 @@
             cell3.className = 'section__container__cell';
             let input3 = document.createElement('input');
             input3.className = 'section__input';
+            input3.id = 'name';
             let p3 = document.createElement('p');
             p3.className = 'p__input';
             p3.textContent = 'ФИО';
@@ -39,6 +42,7 @@
             cell4.className = 'section__container__cell';
             let input4 = document.createElement('input');
             input4.className = 'section__input';
+            input4.id = 'password';
             let p4 = document.createElement('p');
             p4.className = 'p__input';
             p4.textContent = 'Пароль';
@@ -47,6 +51,7 @@
             cell5.className = 'section__container__cell';
             let input5 = document.createElement('input');
             input5.className = 'section__input';
+            input5.id = 'password_repeat';
             let p5 = document.createElement('p');
             p5.className = 'p__input';
             p5.textContent = 'Подтверждение пароля';
@@ -55,6 +60,7 @@
             buttonContainer.className = 'section__container__button';
 
             let buttonRegistration = document.createElement('button');
+            buttonRegistration.onclick = registration;
             buttonRegistration.className = 'section__button p__button';
             buttonRegistration.textContent = 'Зарегистрироваться';
 
