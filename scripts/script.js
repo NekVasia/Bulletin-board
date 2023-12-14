@@ -18,26 +18,52 @@ const registration = () => { //Функция для регистрации
         return;
     }
 
-    const userData = {
+    const userRegistration = {
         email: email,
         phone: phone,
         name: name,
         password: password
     };
+
     fetch("../src/user.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(userRegistration),
     })
 
         .then(response => response.json())
         .then(response => {
             console.log(response);
-        })
+        });
         // .catch(error => {
         //     console.log(error);
         // });
 }
 
+const login = () => { //Функция для регистрации
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const userLogin = {
+        email: email,
+        password: password
+    };
+
+    fetch("../src/user.php", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userLogin),
+    })
+
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+        });
+        // .catch(error => {
+        //     console.log(error);
+        // });
+}

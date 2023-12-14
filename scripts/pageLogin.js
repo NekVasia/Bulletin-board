@@ -31,6 +31,7 @@
             buttonContainer.className = 'section__container__button';
 
             let buttonLogin = document.createElement('button');
+            buttonLogin.onclick = login;
             buttonLogin.className = 'section__button p__button';
             buttonLogin.textContent = 'Вход';
 
