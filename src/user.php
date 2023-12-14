@@ -1,13 +1,10 @@
 <?php
 
-require_once ('class/Database.php');
+require_once('class/Database.php');
 require_once('class/UserRegistration.php');
 require_once('class/UserSearch.php');
 require_once('class/UserUpdate.php');
 require_once('class/UserDelete.php');
-require_once('class/ProductCreation.php');
-require_once('class/ProductSearch.php');
-require_once('class/ProductDelete.php');
 
 
 $inputData = file_get_contents('php://input');
@@ -24,6 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация новог�
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $phone = $_POST['phone'] ?? '';
+    echo "$name, $email, $phone, $password"; //Приходят пустые!!!!!!!!!!!
+
 
     $userRegistration = new UserRegistration();
     $userRegistration->userRegistration($name, $email, $password, $phone);
@@ -78,33 +77,3 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользов
     $userDelete = new UserDelete();
     $userDelete->deleteUser($userId);
 }
-
-
-
-////REST API для таблицы product
-//if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового объявления
-//    $userId = 1; //$userData['user_id'];
-//    $title = $_POST['title'];
-//    $about = $_POST['about'];
-//    $sum = $_POST['sum'];
-//    $image = $_POST['image'];
-//
-//    $productCreation = new ProductCreation();
-//    $productCreation->productCreation($userId, $title, $about, $sum, $image);
-//}
-//
-//if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товара
-//    $productSearch = new ProductSearch();
-//
-//    if (isset($_GET['user_id'])) { //Поиск по id
-//        $userId = 1; //$userData['user_id'];
-//        $productSearch->searchProduct($userId);
-//    }
-//}
-//
-//if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
-//    $productId = $userData['product_id']; //$productId = 2; Так работает
-//
-//    $productDelete = new ProductDelete();
-//    $productDelete->deleteProduct($productId);
-//}
