@@ -3,7 +3,7 @@
         draw: function () {
             let main = document.createElement('main');
             main.className = 'main';
-            
+
             let section = document.createElement('section');
             section.className = 'product';
 
@@ -29,10 +29,11 @@
             let name = document.createElement('div');
             name.className = 'product__name';
 
-            // image.textContent = product.image;
-            // phone.textContent = product.image;
-            // title.textContent = product.image;
-            // image.textContent = product.image;
+            // image.textContent = showProduct.image;
+            // phone.textContent = showProduct.phone;
+            // title.textContent = showProduct.title;
+            // about.textContent = showProduct.about;
+            // sum.textContent = showProduct.sum;
 
             block1.append(image);
             block1.append(phone);

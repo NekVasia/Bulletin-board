@@ -45,7 +45,28 @@
     padding-right: 20px;
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
+
+.header__burger {
+    display: flex;
+}
+
+.header__burger__item {
+    margin-left: 30px;
+}
+
+.header__burger__item:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 450px) {
+    .header__burger {
+        display: none;
+    }
+}
+
 
 /*LOGIN and REGISTRATION*/
 .p__button {
