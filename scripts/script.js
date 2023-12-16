@@ -11,12 +11,12 @@ const registration = () => { //Функция для регистрации
     const phone = document.getElementById('phone').value;
     const name = document.getElementById('name').value;
     const password = document.getElementById('password').value;
-    // const password_repeat = document.getElementById('password_repeat').value;
+    const password_repeat = document.getElementById('password_repeat').value;
 
-    // if (password !== password_repeat) { //Проверка на соответствие паролей
-    //     alert("Пароли не совпадают");
-    //     return;
-    // }
+    if (password !== password_repeat) { //Проверка на соответствие паролей
+        alert("Пароли не совпадают");
+        return;
+    }
 
     const userRegistration = {
         email: email,
@@ -35,11 +35,13 @@ const registration = () => { //Функция для регистрации
 
         .then(response => response.json())
         .then(result => {
+            alert("Вы успешно зарегистрировались");
             console.log(result);
         })
-    // .catch(error => {
-    //     console.log(error);
-    // });
+        .catch(error => {
+            alert("Ошибка регистрации");
+            console.log(error);
+        });
 }
 
 const login = () => { //Функция для регистрации

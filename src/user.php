@@ -7,21 +7,21 @@ require_once('class/UserUpdate.php');
 require_once('class/UserDelete.php');
 
 
-$inputData = file_get_contents('php://input');
-$userData = json_decode($inputData, true);
+//$inputData = file_get_contents('php://input');
+//$userData = json_decode($inputData, true);
 
-$response = ["Данные переданы" => true];
-echo json_encode($response);
-
+//$response = ["Данные переданы" => true];
+//echo json_encode($response);
+//echo $inputData;
 
 
 //REST API для таблицы users
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация нового пользователя
-    $name = $_POST['name'] ?? ''; //Значение устанавливается в том случае, если поле было передано через $_POST
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $phone = $_POST['phone'] ?? '';
-    echo "$name, $email, $phone, $password"; //Приходят пустые!!!!!!!!!!!
+    $name = $userData["name"] ?? ''; //Значение устанавливается в том случае, если поле было передано через $_POST
+    $email = $userData["email"] ?? '';
+    $password = $userData["password"] ?? '';
+    $phone = $userData["phone"] ?? '';
+    echo "$name, $email, $phone, $password";
 
 
     $userRegistration = new UserRegistration();
