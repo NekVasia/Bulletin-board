@@ -1,6 +1,9 @@
 (function (app) {
     app.pageLogin = {
         draw: function () {
+            let main = document.createElement('main');
+            main.className = 'main';
+
             let section = document.createElement('section');
             section.className = 'section';
 
@@ -41,23 +44,25 @@
 
             buttonRegistration.addEventListener("click", goToRegister);
 
-            cell1.appendChild(input1);
-            cell1.appendChild(p1);
+            cell1.append(input1);
+            cell1.append(p1);
 
-            cell2.appendChild(input2);
-            cell2.appendChild(p2);
+            cell2.append(input2);
+            cell2.append(p2);
 
-            buttonContainer.appendChild(buttonLogin);
-            buttonContainer.appendChild(buttonRegistration);
+            buttonContainer.append(buttonLogin);
+            buttonContainer.append(buttonRegistration);
 
-            container.appendChild(title);
-            container.appendChild(cell1);
-            container.appendChild(cell2);
-            container.appendChild(buttonContainer);
+            container.append(title);
+            container.append(cell1);
+            container.append(cell2);
+            container.append(buttonContainer);
 
-            section.appendChild(container);
+            section.append(container);
 
-            document.body.appendChild(section);
+            main.append(section);
+
+            document.body.append(main);
         }
     }
 

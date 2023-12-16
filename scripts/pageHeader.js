@@ -1,6 +1,9 @@
 (function (app) {
     app.pageHeader = {
         draw: function () {
+            let main = document.createElement('main');
+            main.className = 'main';
+
             let header = document.createElement('header');
             header.className = 'header';
 
@@ -11,11 +14,13 @@
             title.className = 'h1';
             title.textContent = 'МояОбъява.RU';
 
-            container.appendChild(title);
+            container.append(title);
 
-            header.appendChild(container);
+            header.append(container);
 
-            document.body.appendChild(header);
+            main.append(header);
+
+            document.body.append(main);
         }
     }
 })(AdsBoard);

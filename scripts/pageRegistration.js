@@ -1,6 +1,9 @@
 (function (app) {
     app.pageRegistration = {
         draw: function () {
+            let main = document.createElement('main');
+            main.className = 'main';
+
             let section = document.createElement('section');
             section.className = 'section';
 
@@ -70,35 +73,37 @@
 
             buttonLogin.addEventListener("click", goToLogin);
 
-            cell1.appendChild(input1);
-            cell1.appendChild(p1);
+            cell1.append(input1);
+            cell1.append(p1);
 
-            cell2.appendChild(input2);
-            cell2.appendChild(p2);
+            cell2.append(input2);
+            cell2.append(p2);
 
-            cell3.appendChild(input3);
-            cell3.appendChild(p3);
+            cell3.append(input3);
+            cell3.append(p3);
 
-            cell4.appendChild(input4);
-            cell4.appendChild(p4);
+            cell4.append(input4);
+            cell4.append(p4);
 
-            cell5.appendChild(input5);
-            cell5.appendChild(p5);
+            cell5.append(input5);
+            cell5.append(p5);
 
-            buttonContainer.appendChild(buttonRegistration);
-            buttonContainer.appendChild(buttonLogin);
+            buttonContainer.append(buttonRegistration);
+            buttonContainer.append(buttonLogin);
 
-            container.appendChild(title);
-            container.appendChild(cell1);
-            container.appendChild(cell2);
-            container.appendChild(cell3);
-            container.appendChild(cell4);
-            container.appendChild(cell5);
-            container.appendChild(buttonContainer);
+            container.append(title);
+            container.append(cell1);
+            container.append(cell2);
+            container.append(cell3);
+            container.append(cell4);
+            container.append(cell5);
+            container.append(buttonContainer);
 
-            section.appendChild(container);
+            section.append(container);
 
-            document.body.appendChild(section);
+            main.append(section);
+
+            document.body.append(main);
         }
     }
     function goToLogin() {
