@@ -33,8 +33,10 @@
 
 /*HEADER*/
 .header {
-    height: 80px;
+    min-height: 80px;
+    height: fit-content;
     background-color: #0EA5E9;;
+    position: absolute;
 }
 
 .header__container {
