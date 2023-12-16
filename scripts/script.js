@@ -37,9 +37,9 @@ const registration = () => { //Функция для регистрации
         .then(result => {
             console.log(result);
         })
-        // .catch(error => {
-        //     console.log(error);
-        // });
+    // .catch(error => {
+    //     console.log(error);
+    // });
 }
 
 const login = () => { //Функция для регистрации
@@ -65,5 +65,22 @@ const login = () => { //Функция для регистрации
         })
         .catch(error => {
             console.log(error);
+        });
+}
+
+function getProduct() {
+    fetch('../src/product.php', {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productSearch),
+    })
+        .then(response => response.json())
+        .then(showProduct => {
+
+        })
+        .catch(error => {
+            console.error("Ошибка:", error);
         });
 }
