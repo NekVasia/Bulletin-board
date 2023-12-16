@@ -14,6 +14,7 @@
             let block2 = document.createElement('div');
             block2.className = 'product__block';
             let cell = document.createElement('div');
+            cell.className = 'product__cell';
             let title = document.createElement('div');
             title.className = 'product__title';
             title.className = 'product__about';
@@ -34,7 +35,7 @@
             section.append(block1);
             section.append(block2);
 
-            document.body.appendChild(section);
+            document.body.append(section);
         }
     }
 })(AdsBoard);

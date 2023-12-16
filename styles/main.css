@@ -1,3 +1,4 @@
+/*MAIN*/
 * {
     top: 0;
     bottom: 0;
@@ -5,19 +6,6 @@
     right: 0;
     padding: 0;
     margin: 0;
-}
-
-
-
-.header {
-    height: 80px;
-    background-color: #0EA5E9;;
-}
-
-.header__container {
-    padding-top: 27px;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .h1 {
@@ -38,6 +26,24 @@
     line-height: normal;
 }
 
+.main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/*HEADER*/
+.header {
+    height: 80px;
+    background-color: #0EA5E9;;
+}
+
+.header__container {
+    padding-top: 27px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*LOGIN and REGISTRATION*/
 .p__button {
     color: #FFF;
     font-family: Inter;
@@ -75,7 +81,7 @@
 .section__button {
     height: 36px;
     width: 200px;
-    background-color: #0EA5E9; //Поменять
+    background-color: #0EA5E9;
 }
 
 .section__container__cell {
@@ -90,4 +96,63 @@
     flex-direction: column;
     height: 93px;
     margin: 20px 0;
+}
+
+
+/*product*/
+
+.product {
+    margin: 30px 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.product__block {
+    display: flex;
+    flex-direction: column;
+    border: red 1px solid;
+    justify-content: space-between;
+}
+
+.product__block__grow {
+    flex-grow: 100;
+}
+
+.product__cell {
+    display: flex;
+    flex-direction: row;
+    border: green 1px solid;
+    flex-grow: 100;
+    justify-content: space-between;
+}
+
+.product__image {
+    height: 150px;
+    width: 150px;
+    border: blue 1px solid;
+}
+
+.product__phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    height: 30px;
+    width: 150px;
+    border: 1px solid #0EA5E9;
+    background: #0EA5E9;
+}
+
+.product__title {
+    margin: 0 20px;
+}
+
+.product__sum {
+    height: 30px;
+    width: 120px;
+    text-align: end;
+}
+
+.product__name {
+    margin: 0 20px;
 }
