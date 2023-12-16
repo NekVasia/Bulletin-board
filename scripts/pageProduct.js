@@ -13,30 +13,26 @@
 
             let block2 = document.createElement('div');
             block2.className = 'product__block';
+            let cell = document.createElement('div');
             let title = document.createElement('div');
             title.className = 'product__title';
-            let about = document.createElement('div');
-            about.className = 'product__about';
-            let name = document.createElement('div');
-            name.className = 'product__name';
-
-            let block3 = document.createElement('div');
-            block3.className = 'product__block';
+            title.className = 'product__about';
             let sum = document.createElement('div');
             sum.className = 'product__sum';
+            let name = document.createElement('div');
+            name.className = 'product__name';
 
             block1.append(image);
             block1.append(phone);
 
-            block2.append(title);
-            block2.append(about);
-            block2.append(name);
+            cell.append(title);
+            cell.append(sum);
 
-            block3.append(sum);
+            block2.append(cell);
+            block2.append(name);
 
             section.append(block1);
             section.append(block2);
-            section.append(block3);
 
             document.body.appendChild(section);
         }
