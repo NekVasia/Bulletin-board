@@ -1,9 +1,6 @@
 (function (app) {
     app.pageHeader = {
         draw: function () {
-            let main = document.createElement('main');
-            main.className = 'main';
-
             let header = document.createElement('header');
             header.className = 'header';
 
@@ -18,9 +15,7 @@
 
             header.append(container);
 
-            main.append(header);
-
-            document.body.append(main);
+            document.body.append(header);
         }
     }
 })(AdsBoard);

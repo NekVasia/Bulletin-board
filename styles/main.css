@@ -41,6 +41,8 @@
     padding-top: 27px;
     padding-left: 20px;
     padding-right: 20px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /*LOGIN and REGISTRATION*/
