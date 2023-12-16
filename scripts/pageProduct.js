@@ -15,21 +15,33 @@
             phone.className = 'product__phone';
 
             let block2 = document.createElement('div');
-            block2.className = 'product__block';
+            block2.className = 'product__block product__block__grow';
             let cell = document.createElement('div');
             cell.className = 'product__cell';
+            let cell__content = document.createElement('div');
+            cell__content.className = 'product__cell__description';
             let title = document.createElement('div');
             title.className = 'product__title';
-            title.className = 'product__about';
+            let about = document.createElement('div');
+            about.className = 'product__about';
             let sum = document.createElement('div');
             sum.className = 'product__sum';
             let name = document.createElement('div');
             name.className = 'product__name';
 
+            // image.textContent = product.image;
+            // phone.textContent = product.image;
+            // title.textContent = product.image;
+            // image.textContent = product.image;
+
             block1.append(image);
             block1.append(phone);
 
-            cell.append(title);
+
+            cell__content.append(title);
+            cell__content.append(about);
+
+            cell.append(cell__content);
             cell.append(sum);
 
             block2.append(cell);

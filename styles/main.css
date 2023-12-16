@@ -145,8 +145,18 @@
     background: #0EA5E9;
 }
 
-.product__title {
+.product__cell__description {
+    display: flex;
+    flex-direction: column;
     margin: 0 20px;
+}
+
+.product__title {
+
+}
+
+.product__about {
+    margin-top: 10px;
 }
 
 .product__sum {
