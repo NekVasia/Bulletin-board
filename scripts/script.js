@@ -39,7 +39,7 @@ const registration = () => { //Функция для регистрации
             console.log(result);
         })
         .catch(error => {
-            alert("Ошибка регистрации");
+            //alert("Ошибка регистрации");
             console.log(error);
         });
 }
@@ -48,41 +48,37 @@ const login = () => { //Функция для регистрации
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const userLogin = {
-        email: email,
-        password: password
-    };
-
-    fetch("../src/user.php", {
+    fetch(`../src/user.php?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,{
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(userLogin),
     })
 
         .then(response => response.json())
         .then(result => {
+            alert("Вы успешно вошли");
             console.log(result);
         })
         .catch(error => {
+            // alert("Ошибка авторизации");
             console.log(error);
         });
 }
 
-function getProduct() {
-    fetch('../src/product.php', {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(productSearch),
-    })
-        .then(response => response.json())
-        .then(showProduct => {
-
-        })
-        .catch(error => {
-            console.error("Ошибка:", error);
-        });
-}
+// function getProduct() {
+//     fetch('../src/product.php', {
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(productSearch),
+//     })
+//         .then(response => response.json())
+//         .then(showProduct => {
+//
+//         })
+//         .catch(error => {
+//             console.error("Ошибка:", error);
+//         });
+// }
