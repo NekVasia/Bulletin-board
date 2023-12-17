@@ -18,6 +18,7 @@
             cell1.className = 'section__container__cell';
             let input1 = document.createElement('input');
             input1.className = 'section__input';
+            input1.id = 'email';
             let p1 = document.createElement('p');
             p1.className = 'p__input';
             p1.textContent = 'E-mail';
@@ -26,6 +27,7 @@
             cell2.className = 'section__container__cell';
             let input2 = document.createElement('input');
             input2.className = 'section__input';
+            input2.id = 'password';
             let p2 = document.createElement('p');
             p2.className = 'p__input';
             p2.textContent = 'Пароль';
@@ -38,7 +40,7 @@
             buttonLogin.className = 'section__button p__button';
             buttonLogin.textContent = 'Вход';
 
-            buttonLogin.addEventListener("click", goToProduct);
+            // buttonLogin.addEventListener("click", goToProduct);
 
             let buttonRegistration = document.createElement('button');
             buttonRegistration.className = 'section__button p__button';
@@ -73,9 +75,9 @@
         app.pageRegistration.draw();
     }
 
-    function goToProduct() {
-        document.querySelector(".main").remove();
-        app.pageProduct.draw();
-    }
+    // function goToProduct() {
+    //     document.querySelector(".main").remove();
+    //     app.pageProduct.draw();
+    // }
 
 })(AdsBoard);
