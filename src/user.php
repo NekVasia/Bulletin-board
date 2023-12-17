@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once('class/Database.php');
 require_once('class/UserRegistration.php');
@@ -29,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация новог�
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Авторизация пользователя
-    $email = $userData["email"] ?? '';
-    $password = $userData["password"] ?? '';
+    $email = $_GET["email"] ?? '';
+    $password = $_GET["password"] ?? '';
 
     $userLogin = new UserLogin();
     $userLogin->userLogin($email, $password);
