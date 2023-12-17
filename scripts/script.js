@@ -58,7 +58,9 @@ const login = () => { //Функция для регистрации
         .then(response => response.json())
         .then(result => {
             alert("Вы успешно вошли");
-            console.log(result);
+            //console.log(result);
+
+            AdsBoard.pageProduct.draw();
         })
         .catch(error => {
             // alert("Ошибка авторизации");

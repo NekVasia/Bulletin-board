@@ -11,7 +11,7 @@ class UserLogin
                 $userData = mysqli_fetch_assoc($userLogin);
                 $dataBasePassword = $userData['password']; //Вытаскиваем password из базы данных
                 $id = $userData['user_id']; //Вытаскиваем id из базы данных
-                if (password_verify($password, $dataBasePassword)) {
+                if ($password === $dataBasePassword) {
                     $_SESSION['loggedIn'] = true; //Устанавливаем авторизацию в сессии
                     $_SESSION['user_id'] = $id; //Устанавливаем id для сессии
                 } else { //Если пароль неверный
