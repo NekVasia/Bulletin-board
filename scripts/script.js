@@ -58,12 +58,14 @@ const login = () => { //Функция для регистрации
         .then(response => response.json())
         .then(result => {
             alert("Вы успешно вошли");
-            //console.log(result);
-
+            console.log(result);
+            document.querySelector(".main").remove();
             AdsBoard.pageProduct.draw();
+            document.querySelector(".header").remove();
+            AdsBoard.pageHeaderAfterLogin.draw();
         })
         .catch(error => {
-            // alert("Ошибка авторизации");
+            alert("Ошибка авторизации");
             console.log(error);
         });
 }

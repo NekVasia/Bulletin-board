@@ -17,10 +17,13 @@
             burger.className = 'header__burger';
             let list = document.createElement('h1');
             list.className = 'header__burger__item h1';
+            list.textContent = 'Лента';
             let myList = document.createElement('h1');
             myList.className = 'header__burger__item h1';
+            myList.textContent = 'Мои объявления';
             let exit = document.createElement('h1');
             exit.className = 'header__burger__item h1';
+            exit.textContent = 'Выход';
 
             logo.append(title);
 
