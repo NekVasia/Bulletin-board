@@ -1,20 +1,27 @@
 <?php
-require_once ("Database.php");
+require_once("Database.php");
 
 class UserLogin
 {
-    public function userLogin($email, $password) {
-        $userLogin = Database::query("SELECT email FROM users WHERE email = '$email'");
-        $userPassword = Database::query("SELECT password FROM users WHERE password = '$password'");
-        if ($userLogin !== $userPassword) { //Лошин и пароль соответствуют (херня какая-то)
+    public function userLogin($email, $password)
+    {
+        $userLogin = Database::query("SELECT user_id, password FROM users WHERE email = '$email'");
+        if ($userLogin) {
             if (mysqli_num_rows($userLogin) == 1) {
                 $userData = mysqli_fetch_assoc($userLogin);
-                echo json_encode($userData); //Вывод полученных данных
+                $dataBasePassword = $userData['password']; //Вытаскиваем password из базы данных
+                $id = $userData['user_id']; //Вытаскиваем id из базы данных
+                if (password_verify($password, $dataBasePassword)) {
+                    $_SESSION['loggedIn'] = true; //Устанавливаем авторизацию в сессии
+                    $_SESSION['user_id'] = $id; //Устанавливаем id для сессии
+                } else { //Если пароль неверный
+                    echo "Неверный пароль";
+                }
             } else { //Если пользователь не найден
-                echo "Пользователь найден";
+                echo "Пользователь не найден";
             }
         } else { //Ошибка при выполнении поиска
-            echo "Данный пользователь не зарегистрировался";
+            echo "Данный пользователь не зарегистрирован";
         }
     }
 }
