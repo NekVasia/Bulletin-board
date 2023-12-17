@@ -5,14 +5,14 @@ require_once('class/UserRegistration.php');
 require_once('class/UserSearch.php');
 require_once('class/UserUpdate.php');
 require_once('class/UserDelete.php');
+require_once('class/UserLogin.php');
 
 
-//$inputData = file_get_contents('php://input');
-//$userData = json_decode($inputData, true);
+$inputData = file_get_contents('php://input');
+$userData = json_decode($inputData, true);
 
-//$response = ["Данные переданы" => true];
-//echo json_encode($response);
-//echo $inputData;
+//$userData = ["Данные переданы" => true];
+//echo json_encode($userData);
 
 
 //REST API для таблицы users
@@ -26,6 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация новог�
 
     $userRegistration = new UserRegistration();
     $userRegistration->userRegistration($name, $email, $password, $phone);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") { //Авторизация пользователя
+    $email = $userData["email"] ?? '';
+    $password = $userData["password"] ?? '';
+
+    $userLogin = new UserLogin();
+    $userLogin->userLogin($email, $password);
+
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
