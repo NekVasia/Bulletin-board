@@ -20,10 +20,8 @@ $userData = json_decode($inputData, true);
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация нового пользователя
     $name = $userData["name"] ?? ''; //Значение устанавливается в том случае, если поле было передано через $_POST
     $email = $userData["email"] ?? '';
-    $password = $userData["password"] ?? '';
+    $password = md5($userData["password"]) ?? '';
     $phone = $userData["phone"] ?? '';
-    echo "$name, $email, $phone, $password";
-
 
     $userRegistration = new UserRegistration();
     $userRegistration->userRegistration($name, $email, $password, $phone);
@@ -31,29 +29,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация новог�
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Авторизация пользователя
     $email = $_GET["email"] ?? '';
-    $password = $_GET["password"] ?? '';
+    $password = md5($_GET["password"]) ?? '';
 
     $userLogin = new UserLogin();
     $userLogin->userLogin($email, $password);
-
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
-    $userSearch = new UserSearch();
-
-    if (isset($_GET['user_id'])) { //Поиск по id
-        $userId = $_GET['user_id'];
-        $userSearch->searchById($userId);
-    }
-    if (isset($_GET['name'])) { //Поиск по name
-        $name = $_GET['name'];
-        $userSearch->searchByName($name);
-    }
-    if (isset($_GET['email'])) { //Поиск по email
-        $email = $_GET['email'];
-        $userSearch->searchByEmail($email);
-    }
-}
+//if ($_SERVER["REQUEST_METHOD"] == "GET") { //Поиск пользователя
+//    $userSearch = new UserSearch();
+//
+//    if (isset($_GET['user_id'])) { //Поиск по id
+//        $userId = $_GET['user_id'];
+//        $userSearch->searchById($userId);
+//    }
+//    if (isset($_GET['name'])) { //Поиск по name
+//        $name = $_GET['name'];
+//        $userSearch->searchByName($name);
+//    }
+//    if (isset($_GET['email'])) { //Поиск по email
+//        $email = $_GET['email'];
+//        $userSearch->searchByEmail($email);
+//    }
+//}
 
 if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Редактирование записи пользователя
     $userUpdate = new UserUpdate();
