@@ -5,6 +5,10 @@ class UserLogin
 {
     public function userLogin($email, $password)
     {
+        if (!empty($email) && !empty($password)) {
+            echo "Не заполнены данные пользователя!";
+            return;
+        }
         $userLogin = Database::query("SELECT user_id, password FROM users WHERE email = '$email'");
         if (!$userLogin) {
             echo "Данный пользователь не зарегистрирован!";

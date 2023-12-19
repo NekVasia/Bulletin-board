@@ -10,7 +10,7 @@ class UserRegistration
             echo "Данный пользователь зарегистрирован!";
             return;
         }
-        if (empty($name) && empty($email) && empty($password) && empty($phone)) {
+        if (!empty($name) && !empty($email) && !empty($password) && !empty($phone)) {
             echo "Некорректные данные для регистрации пользователя!";
             return;
         }

@@ -40,7 +40,7 @@
             buttonLogin.className = 'section__button p__button';
             buttonLogin.textContent = 'Вход';
 
-            // buttonLogin.addEventListener("click", goToProduct);
+            buttonLogin.addEventListener("click", goToProduct);
 
             let buttonRegistration = document.createElement('button');
             buttonRegistration.className = 'section__button p__button';
@@ -75,9 +75,9 @@
         app.pageRegistration.draw();
     }
 
-    // function goToProduct() {
-    //     document.querySelector(".main").remove();
-    //     app.pageProduct.draw();
-    // }
+    function goToProduct() {
+        document.querySelector(".main").remove();
+        app.pageProduct.draw();
+    }
 
 })(AdsBoard);

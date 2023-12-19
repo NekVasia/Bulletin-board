@@ -1,6 +1,7 @@
 (function (app) {
+    getProduct();
     app.pageProduct = {
-        draw: function () {
+        draw: function (showProduct) {
             let main = document.createElement('main');
             main.className = 'main';
 
@@ -29,15 +30,14 @@
             let name = document.createElement('div');
             name.className = 'product__name';
 
-            // image.textContent = showProduct.image;
-            // phone.textContent = showProduct.phone;
-            // title.textContent = showProduct.title;
-            // about.textContent = showProduct.about;
-            // sum.textContent = showProduct.sum;
+            image.innerText = showProduct.image;
+            phone.innerText = showProduct.phone;
+            title.innerText = showProduct.title;
+            about.innerText = showProduct.about;
+            sum.innerText = showProduct.sum;
 
             block1.append(image);
             block1.append(phone);
-
 
             cell__content.append(title);
             cell__content.append(about);

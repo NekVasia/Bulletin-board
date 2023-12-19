@@ -57,7 +57,7 @@ const login = () => { //Функция для регистрации
 
         .then(response => response.json())
         .then(result => {
-            alert("Вы успешно вошли");
+            //alert("Вы успешно вошли");
             console.log(result);
             document.querySelector(".main").remove();
             AdsBoard.pageProduct.draw();
@@ -70,19 +70,20 @@ const login = () => { //Функция для регистрации
         });
 }
 
-// function getProduct() {
-//     fetch('../src/product.php', {
-//         method: "GET",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(productSearch),
-//     })
-//         .then(response => response.json())
-//         .then(showProduct => {
-//
-//         })
-//         .catch(error => {
-//             console.error("Ошибка:", error);
-//         });
-// }
+function getProduct() {
+    fetch('../src/product.php', {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        // body: JSON.stringify(productSearch),
+    })
+        .then(response => response.json())
+        .then(showProduct => {
+            console.log(showProduct);
+            console.log("showProduct");
+        })
+        .catch(error => {
+            console.error("Ошибка:", error);
+        });
+}
