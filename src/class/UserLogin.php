@@ -5,7 +5,7 @@ class UserLogin
 {
     public function userLogin($email, $password)
     {
-        if (!empty($email) && !empty($password)) {
+        if (empty($email) || empty($password)) {
             echo "Не заполнены данные пользователя!";
             return;
         }
