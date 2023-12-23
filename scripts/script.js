@@ -48,7 +48,7 @@ const login = () => { //Функция для регистрации
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    fetch(`../src/user.php?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,{
+    fetch(`../src/user.php?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -57,13 +57,10 @@ const login = () => { //Функция для регистрации
 
         .then(response => response.json())
         .then(result => {
-            //alert("Вы успешно вошли");
             console.log(result);
             getProduct();
-            // document.querySelector(".main").remove();
-            // AdsBoard.pageProduct.draw();
-            // document.querySelector(".header").remove();
-            // AdsBoard.pageHeaderAfterLogin.draw();
+
+            alert("Вы успешно вошли");
         })
         .catch(error => {
             alert("Ошибка авторизации");
@@ -71,7 +68,7 @@ const login = () => { //Функция для регистрации
         });
 }
 
-function getProduct() {
+const getProduct = () => {
     fetch('../src/product.php', {
         method: "GET",
         headers: {
@@ -89,6 +86,7 @@ function getProduct() {
             AdsBoard.pageHeaderAfterLogin.draw();
         })
         .catch(error => {
+            alert("Ошибка");
             console.error("Ошибка:", error);
         });
 }

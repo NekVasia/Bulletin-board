@@ -25,6 +25,6 @@ class ProductShow
                 'sum' => $row['sum'],
             ];
         }
-        echo json_encode($productData, JSON_PRETTY_PRINT); //Вывод полученных данных
+        echo json_encode($productData); //Вывод полученных данных
     }
 }
