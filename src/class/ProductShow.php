@@ -14,7 +14,17 @@ class ProductShow
             echo "Товар не найден";
             return;
         }
-        $productData = mysqli_fetch_assoc($searchProduct); //Возвращаем список товаров в формате JSON
+        $productData = []; //Создал ассоциативный массив
+        while ($row = Database::fetch($searchProduct)) { //Прогнал полученные данные через цикл
+            $productData[] = [ //Выбрал только нужные поля из полученных данных
+                'image' => $row['image'],
+                'phone' => $row['phone'],
+                'title' => $row['title'],
+                'about' => $row['about'],
+                'name' => $row['name'],
+                'sum' => $row['sum'],
+            ];
+        }
         echo json_encode($productData); //Вывод полученных данных
     }
 }

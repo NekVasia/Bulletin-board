@@ -31,9 +31,10 @@
             name.className = 'product__name';
 
             image.innerText = showProduct.image;
-            //phone.innerText = showProduct.phone;
+            phone.innerText = showProduct.phone;
             title.innerText = showProduct.title;
             about.innerText = showProduct.about;
+            name.innerText = showProduct.name;
             sum.innerText = showProduct.sum;
 
             block1.append(image);
