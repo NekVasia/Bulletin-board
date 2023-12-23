@@ -157,6 +157,11 @@
     border: blue 1px solid;
 }
 
+.product__image-fit {
+    width: 100%;
+    object-fit: contain;
+}
+
 .product__phone {
     display: flex;
     justify-content: center;
@@ -189,5 +194,5 @@
 }
 
 .product__name {
-    margin: 0 20px;
+    margin: 10px 20px 0 20px;
 }

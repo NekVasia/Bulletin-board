@@ -11,6 +11,9 @@
             block1.className = 'product__block';
             let image = document.createElement('div');
             image.className = 'product__image';
+            let imageElement = document.createElement("img");
+            imageElement.className = "product__image-fit";
+            imageElement.alt = "Фотка товара";
             let phone = document.createElement('div');
             phone.className = 'product__phone';
 
@@ -29,12 +32,14 @@
             let name = document.createElement('div');
             name.className = 'product__name';
 
-            image.innerText = productData.image;
+            imageElement.src = productData.image;
             phone.innerText = productData.phone;
             title.innerText = productData.title;
             about.innerText = productData.about;
-            name.innerText = productData.name;
-            sum.innerText = productData.sum;
+            name.innerText = "Продавец: " + productData.name;
+            sum.innerText = productData.sum + " ₽";
+
+            image.append(imageElement);
 
             block1.append(image);
             block1.append(phone);
