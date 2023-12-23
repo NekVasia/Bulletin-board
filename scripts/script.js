@@ -59,10 +59,11 @@ const login = () => { //Функция для регистрации
         .then(result => {
             //alert("Вы успешно вошли");
             console.log(result);
-            document.querySelector(".main").remove();
-            AdsBoard.pageProduct.draw();
-            document.querySelector(".header").remove();
-            AdsBoard.pageHeaderAfterLogin.draw();
+            getProduct();
+            // document.querySelector(".main").remove();
+            // AdsBoard.pageProduct.draw();
+            // document.querySelector(".header").remove();
+            // AdsBoard.pageHeaderAfterLogin.draw();
         })
         .catch(error => {
             alert("Ошибка авторизации");
@@ -76,12 +77,16 @@ function getProduct() {
         headers: {
             "Content-Type": "application/json",
         },
-        // body: JSON.stringify(productSearch),
     })
         .then(response => response.json())
-        .then(showProduct => {
-            console.log(showProduct);
-            console.log("showProduct");
+        .then(productData => {
+            console.log(productData);
+
+            document.querySelector(".main").remove();
+            productData.forEach((item) => AdsBoard.pageProduct.draw(item));
+
+            document.querySelector(".header").remove();
+            AdsBoard.pageHeaderAfterLogin.draw();
         })
         .catch(error => {
             console.error("Ошибка:", error);

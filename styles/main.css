@@ -127,9 +127,9 @@
 /*product*/
 
 .product {
-    margin: 30px 20px;
     display: flex;
     flex-direction: row;
+    margin: 100px 20px 30px;
 }
 
 .product__block {
