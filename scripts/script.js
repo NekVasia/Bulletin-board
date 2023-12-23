@@ -90,3 +90,10 @@ const getProduct = () => {
             console.error("Ошибка:", error);
         });
 }
+
+
+
+// const showPhone = () => {
+//     document.querySelector(".product__phone").innerHTML ="";
+//     productData.forEach((item) => AdsBoard.pageProduct.draw(item));
+// }
