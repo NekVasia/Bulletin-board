@@ -1,8 +1,20 @@
 let AdsBoard = {};
 
+function getCookie(name) { //Функция проверки куки
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-    AdsBoard.pageHeader.draw();
-    AdsBoard.pageLogin.draw();
+
+    if (!getCookie("PHPSESSID")) {
+        AdsBoard.pageHeader.draw();
+        AdsBoard.pageLogin.draw();
+    } else {
+        getProduct();
+    }
 })
 
 //Регистрация пользователя
@@ -58,9 +70,11 @@ const login = () => { //Функция для регистрации
         .then(response => response.json())
         .then(result => {
             console.log(result);
-            getProduct();
-
-            alert("Вы успешно вошли");
+            if(result.code) {
+                getProduct();
+            } else {
+                alert(result.message);
+            }
         })
         .catch(error => {
             alert("Ошибка авторизации");
@@ -78,11 +92,13 @@ const getProduct = () => {
         .then(response => response.json())
         .then(productData => {
             console.log(productData);
-
-            document.querySelector(".main").remove();
+            if (document.querySelector(".main")) {
+                document.querySelector(".main").remove();
+            }
             productData.forEach((item) => AdsBoard.pageProduct.draw(item));
-
-            document.querySelector(".header").remove();
+            if (document.querySelector(".header")) {
+                document.querySelector(".header").remove();
+            }
             AdsBoard.pageHeaderAfterLogin.draw();
         })
         .catch(error => {
