@@ -1,4 +1,18 @@
 (function (app) {
+    app.pageMyProductCreate = { //Для добавления кнопки "Добавить"
+        draw: function () {
+            let createDiv = document.createElement('div');
+            createDiv.className = 'product__create';
+
+            let buttonCreate = document.createElement('button');
+            buttonCreate.className = 'button';
+            buttonCreate.textContent = 'Добавить';
+
+            createDiv.append(buttonCreate);
+
+            document.body.append(createDiv); //Так ли?
+        }
+    }
     app.pageMyProduct = {
         draw: function (productData) {
             let main = document.createElement('main');
