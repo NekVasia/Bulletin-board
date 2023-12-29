@@ -7,18 +7,18 @@ class UserRegistration
     {
         $checkRegistration = Database::query("SELECT email FROM users WHERE email = '$email'");
         if (mysqli_num_rows($checkRegistration) == 1) {
-            echo "Данный пользователь зарегистрирован!";
+            echo json_encode(["code" => 0, "message" => "Данный пользователь зарегистрирован!"]);
             return;
         }
         if (!empty($name) && !empty($email) && !empty($password) && !empty($phone)) {
-            echo "Некорректные данные для регистрации пользователя!";
+            echo json_encode(["code" => 0, "message" => "Некорректные данные для регистрации пользователя!"]);
             return;
         }
         $registration = Database::query("INSERT INTO users (name, email, password, phone) VALUES ('$name', '$email', '$password', '$phone')");
         if ($registration) { // Успешная регистрация
-            echo "Пользователь успешно зарегистрирован";
+            echo json_encode(["code" => 1, "message" => "Пользователь успешно зарегистрирован"]);
         } else { // Ошибка при регистрации
-            echo "Ошибка при регистрации пользователя!";
+            echo json_encode(["code" => 0, "message" => "Ошибка при регистрации пользователя!"]);
         }
     }
 }

@@ -9,11 +9,11 @@ function getCookie(name) { //Функция проверки куки
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    if (!getCookie("PHPSESSID")) {
+    if (getCookie("PHPSESSID")) {
+        getProduct();
+    } else {
         AdsBoard.pageHeader.draw();
         AdsBoard.pageLogin.draw();
-    } else {
-        getProduct();
     }
 })
 
