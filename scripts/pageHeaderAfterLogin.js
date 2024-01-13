@@ -15,15 +15,21 @@
 
             let burger = document.createElement('div');
             burger.className = 'header__burger';
-            let list = document.createElement('h1');
+
+            let list = document.createElement('button');
             list.className = 'header__burger__item h1';
             list.textContent = 'Лента';
-            let myList = document.createElement('h1');
+            list.addEventListener("click", goToProduct);
+
+            let myList = document.createElement('button');
             myList.className = 'header__burger__item h1';
             myList.textContent = 'Мои объявления';
-            let exit = document.createElement('h1');
+            myList.addEventListener("click", goToMyProduct);
+
+            let exit = document.createElement('button');
             exit.className = 'header__burger__item h1';
             exit.textContent = 'Выход';
+            exit.addEventListener("click", goToExit);
 
             logo.append(title);
 
@@ -38,5 +44,21 @@
 
             document.body.append(header);
         }
+    }
+
+    function goToProduct() {
+        document.querySelector(".main").remove();
+        getProduct();
+        //app.pageProduct.draw();
+    }
+    function goToMyProduct() {
+        document.querySelector(".main").remove();
+        getMyProduct(29);
+        //app.pageMyProduct.draw();
+    }
+    function goToExit() {
+        document.cookie = "PHPSESSID=;"
+        document.querySelector(".main").remove();
+        app.pageLogin.draw();
     }
 })(AdsBoard);
