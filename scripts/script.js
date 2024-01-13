@@ -107,6 +107,27 @@ const getProduct = () => {
         });
 }
 
+const getMyProduct = (user_id) => {
+    fetch('../src/product.php?user_id=${user_id}', {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => response.json())
+        .then(productData => {
+            console.log(productData);
+            //AdsBoard.pageMyProductCreate.draw();
+            if (document.querySelector(".main")) {
+                document.querySelector(".main").remove();
+            }
+            productData.forEach((item) => AdsBoard.pageMyProduct.draw(item));
+        })
+        .catch(error => {
+            alert("Ошибка");
+            console.error("Ошибка:", error);
+        });
+}
 
 
 // const showPhone = () => {
