@@ -209,3 +209,43 @@
     border: 1px solid #0EA5E9;
     background: #0EA5E9;
 }
+
+/*create_product*/
+
+.product__create {
+    display: flex;
+    flex-direction: column;
+    margin: 100px 20px 30px;
+}
+
+.section__input__create {
+    width: 100%;
+    height: max-content;
+}
+
+.input__create {
+    height: 45px;
+    width: 100%;
+}
+
+.input__create__about {
+    height: 150px;
+    width: 100%;
+}
+
+.section__picture {
+    display: flex;
+    margin-top: 30px;
+}
+
+.section__save {
+    display: flex;
+    margin-top: 30px;
+}
+
+.button__save {
+    height: 30px;
+    width: 150px;
+    border: 1px solid #0EA5E9;
+    background: #0EA5E9;
+}
