@@ -1,8 +1,6 @@
 (function (app) {
     app.pageLogin = {
         draw: function () {
-            // let main = document.createElement('main');
-            // main.className = 'main';
             let main = document.querySelector('main');
 
             let section = document.createElement('section');
@@ -41,8 +39,6 @@
             buttonLogin.className = 'section__button p__button';
             buttonLogin.textContent = 'Вход';
 
-            //buttonLogin.addEventListener("click", getProduct); //Потом удалить!
-
             let buttonRegistration = document.createElement('button');
             buttonRegistration.className = 'section__button p__button';
             buttonRegistration.textContent = 'Зарегистрироваться';
@@ -66,8 +62,6 @@
             section.append(container);
 
             main.append(section);
-
-            //document.body.append(section);
         }
     }
 

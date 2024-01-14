@@ -14,8 +14,6 @@
             createDiv.append(buttonCreate);
 
             main.append(createDiv);
-
-            // document.body.append(createDiv); //Так ли?
         }
     }
 

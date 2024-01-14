@@ -1,8 +1,6 @@
 (function (app) {
     app.pageHeaderAfterLogin = {
         draw: function () {
-            // let header = document.createElement('header');
-            // header.className = 'header';
             let header = document.querySelector('header');
 
             let container = document.createElement('div');
@@ -42,21 +40,17 @@
             container.append(burger);
 
             header.append(container);
-
-            // document.body.append(header);
         }
     }
 
     function goToProduct() {
         document.querySelector("main").innerHTML = "";
         getProduct();
-        //app.pageProduct.draw();
     }
     function goToMyProduct() {
         document.querySelector("main").innerHTML = "";
         getMyProduct(29);
         app.pageMyProductCreate.draw();
-        //app.pageMyProduct.draw();
     }
     function goToExit() {
         document.cookie = "PHPSESSID=;"

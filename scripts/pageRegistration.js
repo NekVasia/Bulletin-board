@@ -1,8 +1,6 @@
 (function (app) {
     app.pageRegistration = {
         draw: function () {
-            // let main = document.createElement('main');
-            // main.className = 'main';
             let main = document.querySelector('main');
 
             let section = document.createElement('section');
@@ -103,8 +101,6 @@
             section.append(container);
 
             main.append(section);
-
-            // document.body.append(main);
         }
     }
     function goToLogin() {

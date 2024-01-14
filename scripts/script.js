@@ -75,7 +75,6 @@ const login = () => { //Функция для регистрации
             }
         })
         .catch(error => {
-            alert("Ошибка авторизации");
             console.log(error);
         });
 }
@@ -115,10 +114,6 @@ const getMyProduct = (user_id) => {
         .then(response => response.json())
         .then(productData => {
             console.log(productData);
-            //AdsBoard.pageMyProductCreate.draw();
-            // if (document.querySelector(".main")) {
-            //     document.querySelector(".main").innerHTML = "";
-            // }
             productData.forEach((item) => AdsBoard.pageMyProduct.draw(item));
         })
         .catch(error => {
@@ -160,7 +155,6 @@ const createProduct = () => { //Функция для добавления но�
             console.log(result);
         })
         .catch(error => {
-            //alert("Ошибка регистрации");
             console.log(error);
         });
 }

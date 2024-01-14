@@ -1,8 +1,6 @@
 (function (app) {
     app.pageProduct = {
         draw: function (productData) {
-            // let main = document.createElement('main');
-            // main.className = 'main';
             let main = document.querySelector('main');
 
             let section = document.createElement('section');
@@ -58,8 +56,6 @@
             section.append(block2);
 
             main.append(section);
-
-            // document.body.append(main);
         }
     }
 })(AdsBoard);
