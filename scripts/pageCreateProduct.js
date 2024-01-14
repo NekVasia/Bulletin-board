@@ -1,8 +1,9 @@
 (function (app) {
     app.pageCreateProduct = {
         draw: function () {
-            let main = document.createElement('main');
-            main.className = 'main';
+            // let main = document.createElement('main');
+            // main.className = 'main';
+            let main = document.querySelector('main');
 
             let section = document.createElement('section');
             section.className = 'product__create';
@@ -48,6 +49,7 @@
             let buttonSave = document.createElement('button');
             buttonSave.className = 'button__save';
             buttonSave.textContent = 'Сохранить';
+            buttonSave.onclick = createProduct;
             //buttonSave.addEventListener("click", goToSave);
 
             block1.append(p1);
@@ -68,7 +70,7 @@
 
             main.append(section);
 
-            document.body.append(main);
+            //document.body.append(main);
         }
     }
 
@@ -78,7 +80,7 @@
     // }
     //
     // function goToSave() {
-    //     document.querySelector(".main").remove();
+    //     document.querySelector(".main").innerHTML = "";
     //     app.pageRegistration.draw();
     // }
 })(AdsBoard);

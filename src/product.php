@@ -16,7 +16,7 @@ $userData = json_decode($inputData, true);
 
 //REST API для таблицы product
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового объявления
-    $userId = 1; //$userData['user_id'];
+    $userId = 2; //$userData['user_id'];
     $title = $_POST['title'];
     $about = $_POST['about'];
     $sum = $_POST['sum'];

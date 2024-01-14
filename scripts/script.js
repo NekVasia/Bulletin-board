@@ -47,11 +47,9 @@ const registration = () => { //Функция для регистрации
 
         .then(response => response.json())
         .then(result => {
-            alert("Вы успешно зарегистрировались");
             console.log(result);
         })
         .catch(error => {
-            //alert("Ошибка регистрации");
             console.log(error);
         });
 }
@@ -93,11 +91,11 @@ const getProduct = () => {
         .then(productData => {
             console.log(productData);
             if (document.querySelector(".main")) {
-                document.querySelector(".main").remove();
+                document.querySelector(".main").innerHTML = "";
             }
             productData.forEach((item) => AdsBoard.pageProduct.draw(item));
             if (document.querySelector(".header")) {
-                document.querySelector(".header").remove();
+                document.querySelector(".header").innerHTML = "";
             }
             AdsBoard.pageHeaderAfterLogin.draw();
         })
@@ -118,9 +116,9 @@ const getMyProduct = (user_id) => {
         .then(productData => {
             console.log(productData);
             //AdsBoard.pageMyProductCreate.draw();
-            if (document.querySelector(".main")) {
-                document.querySelector(".main").remove();
-            }
+            // if (document.querySelector(".main")) {
+            //     document.querySelector(".main").innerHTML = "";
+            // }
             productData.forEach((item) => AdsBoard.pageMyProduct.draw(item));
         })
         .catch(error => {
@@ -135,17 +133,17 @@ const getMyProduct = (user_id) => {
 //     productData.forEach((item) => AdsBoard.pageProduct.draw(item));
 // }
 
-const CreateProduct = () => { //Функция для добавления нового продукта
+const createProduct = () => { //Функция для добавления нового продукта
     const title = document.getElementById('title').value;
     const about = document.getElementById('about').value;
     const sum = document.getElementById('sum').value;
-    const image = document.getElementById('image').value;
+    //const image = document.getElementById('image').value;
 
     const dataCreateProduct = {
-        name: title,
+        title: title,
         about: about,
-        sum: sum,
-        image: image
+        sum: sum
+        //image: image
     };
 
     fetch("../src/product.php", {

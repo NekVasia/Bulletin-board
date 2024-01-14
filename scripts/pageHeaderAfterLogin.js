@@ -1,8 +1,9 @@
 (function (app) {
     app.pageHeaderAfterLogin = {
         draw: function () {
-            let header = document.createElement('header');
-            header.className = 'header';
+            // let header = document.createElement('header');
+            // header.className = 'header';
+            let header = document.querySelector('header');
 
             let container = document.createElement('div');
             container.className = 'header__container';
@@ -42,23 +43,26 @@
 
             header.append(container);
 
-            document.body.append(header);
+            // document.body.append(header);
         }
     }
 
     function goToProduct() {
-        document.querySelector(".main").remove();
+        document.querySelector("main").innerHTML = "";
         getProduct();
         //app.pageProduct.draw();
     }
     function goToMyProduct() {
-        document.querySelector(".main").remove();
+        document.querySelector("main").innerHTML = "";
         getMyProduct(29);
+        app.pageMyProductCreate.draw();
         //app.pageMyProduct.draw();
     }
     function goToExit() {
         document.cookie = "PHPSESSID=;"
-        document.querySelector(".main").remove();
+        document.querySelector("main").innerHTML = "";
+        document.querySelector("header").innerHTML = "";
+        app.pageHeader.draw();
         app.pageLogin.draw();
     }
 })(AdsBoard);

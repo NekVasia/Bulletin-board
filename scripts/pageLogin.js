@@ -1,8 +1,9 @@
 (function (app) {
     app.pageLogin = {
         draw: function () {
-            let main = document.createElement('main');
-            main.className = 'main';
+            // let main = document.createElement('main');
+            // main.className = 'main';
+            let main = document.querySelector('main');
 
             let section = document.createElement('section');
             section.className = 'section';
@@ -66,12 +67,12 @@
 
             main.append(section);
 
-            document.body.append(main);
+            //document.body.append(section);
         }
     }
 
     function goToRegister() {
-        document.querySelector(".main").remove();
+        document.querySelector(".main").innerHTML = "";
         app.pageRegistration.draw();
     }
 
