@@ -134,3 +134,35 @@ const getMyProduct = (user_id) => {
 //     document.querySelector(".product__phone").innerHTML ="";
 //     productData.forEach((item) => AdsBoard.pageProduct.draw(item));
 // }
+
+const CreateProduct = () => { //Функция для добавления нового продукта
+    const title = document.getElementById('title').value;
+    const about = document.getElementById('about').value;
+    const sum = document.getElementById('sum').value;
+    const image = document.getElementById('image').value;
+
+    const dataCreateProduct = {
+        name: title,
+        about: about,
+        sum: sum,
+        image: image
+    };
+
+    fetch("../src/product.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataCreateProduct),
+    })
+
+        .then(response => response.json())
+        .then(result => {
+            alert("Вы успешно добавили продукт");
+            console.log(result);
+        })
+        .catch(error => {
+            //alert("Ошибка регистрации");
+            console.log(error);
+        });
+}

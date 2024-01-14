@@ -7,14 +7,31 @@
             let buttonCreate = document.createElement('button');
             buttonCreate.className = 'button';
             buttonCreate.textContent = 'Добавить';
+            buttonCreate.addEventListener("click", goToCreateProduct);
 
             createDiv.append(buttonCreate);
 
             document.body.append(createDiv); //Так ли?
         }
     }
+    function goToCreateProduct() {
+        document.querySelector(".main").remove();
+        app.pageCreateProduct.draw();
+    }
+
     app.pageMyProduct = {
         draw: function (productData) {
+            let createDiv = document.createElement('div');
+            createDiv.className = 'product__create';
+
+            let buttonCreate = document.createElement('button');
+            buttonCreate.className = 'button';
+            buttonCreate.textContent = 'Добавить';
+
+            createDiv.append(buttonCreate);
+
+            document.body.append(createDiv); //Так ли?
+
             let main = document.createElement('main');
             main.className = 'main';
 
@@ -53,11 +70,10 @@
             buttonDelete.className = 'button';
             buttonDelete.textContent = 'Удалить';
 
-            // imageElement.src = productData.image;
-            // phone.innerText = productData.phone;
-            // title.innerText = productData.title;
-            // about.innerText = productData.about;
-            // sum.innerText = productData.sum + " ₽";
+            imageElement.src = productData.image;
+            title.innerText = productData.title;
+            about.innerText = productData.about;
+            sum.innerText = productData.sum + " ₽";
 
             image.append(imageElement);
 

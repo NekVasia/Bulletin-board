@@ -14,6 +14,7 @@
             p1.textContent = 'Название:';
             let input1 = document.createElement('input');
             input1.className = 'input__create';
+            input1.id = 'title';
 
             let block2 = document.createElement('div');
             block2.className = 'section__input__create';
@@ -22,6 +23,7 @@
             p2.textContent = 'Описание:';
             let input2 = document.createElement('input');
             input2.className = 'input__create__about';
+            input2.id = 'about';
 
             let block3 = document.createElement('div');
             block3.className = 'section__input__create';
@@ -30,6 +32,7 @@
             p3.textContent = 'Цена:';
             let input3 = document.createElement('input');
             input3.className = 'input__create';
+            input3.id = 'sum';
 
             let block4 = document.createElement('div');
             block4.className = 'section__picture';
@@ -38,12 +41,14 @@
             let button = document.createElement('button');
             button.className = 'button';
             button.textContent = 'Загрузить фото';
+            //button.addEventListener("click", goToLoad);
 
             let block5 = document.createElement('div');
             block5.className = 'section__save';
             let buttonSave = document.createElement('button');
             buttonSave.className = 'button__save';
             buttonSave.textContent = 'Сохранить';
+            //buttonSave.addEventListener("click", goToSave);
 
             block1.append(p1);
             block1.append(input1);
@@ -66,4 +71,14 @@
             document.body.append(main);
         }
     }
+
+    // function goToLoad() {
+    //     document.querySelector(".main").remove();
+    //     app.pageRegistration.draw();
+    // }
+    //
+    // function goToSave() {
+    //     document.querySelector(".main").remove();
+    //     app.pageRegistration.draw();
+    // }
 })(AdsBoard);
