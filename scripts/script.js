@@ -8,7 +8,6 @@ function getCookie(name) { //Функция проверки куки
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
     if (getCookie("PHPSESSID")) {
         getProduct();
     } else {
@@ -48,13 +47,18 @@ const registration = () => { //Функция для регистрации
         .then(response => response.json())
         .then(result => {
             console.log(result);
+            if(result.code) {
+                login();
+            } else {
+                alert(result.message);
+            }
         })
         .catch(error => {
             console.log(error);
         });
 }
 
-const login = () => { //Функция для регистрации
+const login = () => { //Функция для авторизации
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
@@ -104,17 +108,20 @@ const getProduct = () => {
         });
 }
 
-const getMyProduct = (user_id) => {
-    fetch('../src/product.php?user_id=${user_id}', {
+
+const getMyProduct = () => {
+    fetch('../src/product.php', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
     })
         .then(response => response.json())
-        .then(productData => {
-            console.log(productData);
-            productData.forEach((item) => AdsBoard.pageMyProduct.draw(item));
+        .then(productDataMy => {
+            console.log(productDataMy);
+            const userId = 1; // Замените на фактический userId
+            const filteredData = productDataMy.filter(item => item.userId === userId);
+            filteredData.forEach((item) => AdsBoard.pageMyProduct.draw(item));
         })
         .catch(error => {
             alert("Ошибка");
@@ -137,7 +144,7 @@ const createProduct = () => { //Функция для добавления но�
     const dataCreateProduct = {
         title: title,
         about: about,
-        sum: sum
+        sum: sum,
         //image: image
     };
 
@@ -156,5 +163,22 @@ const createProduct = () => { //Функция для добавления но�
         })
         .catch(error => {
             console.log(error);
+        });
+}
+
+const deleteProduct = () => {
+    fetch('../src/product.php', {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => {
+            alert("Ошибка");
+            console.error("Ошибка:", error);
         });
 }
