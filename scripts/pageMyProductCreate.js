@@ -9,7 +9,7 @@
             let buttonCreate = document.createElement('button');
             buttonCreate.className = 'button';
             buttonCreate.textContent = 'Добавить';
-            buttonCreate.addEventListener("click", goToCreateProduct);
+            buttonCreate.addEventListener('click', goToCreateProduct);
 
             createDiv.append(buttonCreate);
 

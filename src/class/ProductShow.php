@@ -17,6 +17,7 @@ class ProductShow
         $productData = []; //Создал ассоциативный массив
         while ($row = Database::fetch($searchProduct)) { //Прогнал полученные данные через цикл
             $productData[] = [ //Выбрал только нужные поля из полученных данных
+                'product_id' => $row['product_id'],
                 'user_id' => $row['user_id'],
                 'image' => $row['image'],
                 'phone' => $row['phone'],

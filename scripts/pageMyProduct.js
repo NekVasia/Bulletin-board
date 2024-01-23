@@ -1,6 +1,6 @@
 (function (app) {
     app.pageMyProduct = {
-        draw: function (productData) {
+        draw: function (productDataMy) {
             let main = document.querySelector('main');
 
             let section = document.createElement('section');
@@ -33,15 +33,18 @@
             let buttonChange = document.createElement('button');
             buttonChange.className = 'button';
             buttonChange.textContent = 'Изменить';
+            //buttonChange.addEventListener('click', changeProduct);
 
             let buttonDelete = document.createElement('button');
             buttonDelete.className = 'button';
             buttonDelete.textContent = 'Удалить';
+            buttonDelete.addEventListener('click', deleteProduct);
 
-            imageElement.src = productData.image;
-            title.innerText = productData.title;
-            about.innerText = productData.about;
-            sum.innerText = productData.sum + " ₽";
+            imageElement.src = productDataMy.image;
+            title.innerText = productDataMy.title;
+            about.innerText = productDataMy.about;
+            sum.innerText = productDataMy.sum + " ₽";
+            section.id = productDataMy.userId;
 
             image.append(imageElement);
 

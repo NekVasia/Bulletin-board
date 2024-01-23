@@ -10,7 +10,7 @@ class UserRegistration
             echo json_encode(["code" => 0, "message" => "Данный пользователь зарегистрирован!"]);
             return;
         }
-        if (!empty($name) && !empty($email) && !empty($password) && !empty($phone)) {
+        if (empty($name) && empty($email) && empty($password) && empty($phone)) {
             echo json_encode(["code" => 0, "message" => "Некорректные данные для регистрации пользователя!"]);
             return;
         }

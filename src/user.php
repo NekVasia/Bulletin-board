@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once('class/Database.php');
 require_once('class/UserRegistration.php');
@@ -8,13 +7,10 @@ require_once('class/UserUpdate.php');
 require_once('class/UserDelete.php');
 require_once('class/UserLogin.php');
 
+session_start();
 
 $inputData = file_get_contents('php://input');
 $userData = json_decode($inputData, true);
-
-//$userData = ["Данные переданы" => true];
-//echo json_encode($userData);
-
 
 //REST API для таблицы users
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Регистрация нового пользователя

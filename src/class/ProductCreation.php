@@ -1,5 +1,5 @@
 <?php
-require_once ("Database.php");
+require_once("Database.php");
 
 class ProductCreation
 {
@@ -25,7 +25,6 @@ class ProductCreation
             $queryField = $queryField . ", image";
             $queryValue = $queryValue . ", '$image'";
         }
-
         $creation = Database::query("INSERT INTO product ($queryField) VALUES ($queryValue)");
         if ($creation) { // Успешная регистрация
             echo "Товар успешно создан";

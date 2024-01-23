@@ -49,8 +49,8 @@
     }
     function goToMyProduct() {
         document.querySelector("main").innerHTML = "";
-        getMyProduct(29);
         app.pageMyProductCreate.draw();
+        getMyProduct();
     }
     function goToExit() {
         document.cookie = "PHPSESSID=;"

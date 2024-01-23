@@ -24,9 +24,11 @@ class UserLogin
             echo json_encode(["code" => 0, "message" => "Неверный пароль!"]);
             return;
         }
-        $id = $userData['user_id']; //Вытаскиваем id из базы данных
+//        $userId = session_create_id();
+//        session_id($userId);
+        $userId = $userData['user_id']; //Вытаскиваем id из базы данных
         $_SESSION['loggedIn'] = true; //Устанавливаем авторизацию в сессии
-        $_SESSION['user_id'] = $id; //Устанавливаем id для сессии
+        $_SESSION['user_id'] = $userId; //Устанавливаем id для сессии
         echo json_encode(["code" => 1, "message" => "Успешная авторизация"]);
     }
 }
