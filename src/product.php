@@ -5,22 +5,24 @@ require_once('class/ProductCreation.php');
 require_once('class/ProductSearch.php');
 require_once('class/ProductDelete.php');
 require_once('class/ProductShow.php');
+require_once('class/ProductShowMy.php');
 
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+$userId = $_SESSION['user_id'];
 
 $inputData = file_get_contents('php://input');
-$userData = json_decode($inputData, true);
-
-//$response = ["Данные переданы" => true];
-//echo json_encode($response);
+$productData = json_decode($inputData, true);
 
 
 //REST API для таблицы product
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового объявления
-    $userId = 2; //$userData['user_id'];
-    $title = $_POST['title'];
-    $about = $_POST['about'];
-    $sum = $_POST['sum'];
-    $image = $_POST['image'];
+    $title = $productData['title'];
+    $about = $productData['about'];
+    $sum = $productData['sum'];
+    $image = $productData['image'];
 
     $productCreation = new ProductCreation();
     $productCreation->productCreation($userId, $title, $about, $sum, $image);
@@ -31,6 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товар�
     $productSearch->showProduct();
 }
 
+//if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод моего списка товаров
+//    $productSearch = new ProductShowMy();
+//    $productSearch->showMyProduct($userId);
+//}
+
+
 //if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товара
 //    $productSearch = new ProductSearch();
 //
@@ -39,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товар�
 //        $productSearch->searchProduct($userId);
 //    }
 //}
-//
-//if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
-//    $productId = $userData['product_id']; //$productId = 2; Так работает
-//
-//    $productDelete = new ProductDelete();
-//    $productDelete->deleteProduct($productId);
-//}
+
+if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
+    $productId = $_GET['product_id']; //$productId = 2; Так работает
+
+    $productDelete = new ProductDelete();
+    $productDelete->deleteProduct($productId);
+}
