@@ -5,7 +5,6 @@ require_once('class/ProductCreation.php');
 require_once('class/ProductSearch.php');
 require_once('class/ProductDelete.php');
 require_once('class/ProductShow.php');
-require_once('class/ProductShowMy.php');
 
 if (!isset($_SESSION)) {
     session_start();

@@ -13,8 +13,12 @@
             let imageElement = document.createElement("img");
             imageElement.className = "product__image-fit";
             imageElement.alt = "Фотка товара";
-            let phone = document.createElement('div');
+            //let phone = document.createElement('div');
+            //phone.className = 'product__phone';
+            let phone = document.createElement('button');
             phone.className = 'product__phone';
+            phone.textContent = 'Показать телефон';
+            phone.addEventListener('click', goToPhone);
 
             let block2 = document.createElement('div');
             block2.className = 'product__block product__block__grow';
@@ -32,7 +36,7 @@
             name.className = 'product__name';
 
             imageElement.src = productData.image;
-            phone.innerText = productData.phone;
+            //phone.innerText = productData.phone;
             title.innerText = productData.title;
             about.innerText = productData.about;
             name.innerText = "Продавец: " + productData.name;

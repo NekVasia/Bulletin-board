@@ -182,3 +182,26 @@ const deleteProduct = () => {
             console.error("Ошибка:", error);
         });
 }
+
+const goToPhone = () => {
+    document.querySelector(".product__phone").innerHTML = "";
+
+    // const productId = document.getElementById('product_id').value;
+
+    fetch('../src/phone.php', {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => response.json())
+        .then(phoneData => {
+            console.log(phoneData);
+            phoneData.forEach((item) => AdsBoard.pageProductPhone.draw(item));
+            AdsBoard.pageProductPhone.draw();
+        })
+        .catch(error => {
+            alert("Ошибка");
+            console.error("Ошибка:", error);
+        });
+}
