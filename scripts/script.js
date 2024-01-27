@@ -110,7 +110,7 @@ const getProduct = () => {
 
 
 const getMyProduct = () => {
-    fetch('../src/product.php', {
+    fetch('../src/productMy.php', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -119,9 +119,9 @@ const getMyProduct = () => {
         .then(response => response.json())
         .then(productDataMy => {
             console.log(productDataMy);
-            const userId = 1; // Замените на фактический userId
-            const filteredData = productDataMy.filter(item => item.userId === userId);
-            filteredData.forEach((item) => AdsBoard.pageMyProduct.draw(item));
+            document.querySelector("main").innerHTML = "";
+            AdsBoard.pageMyProductCreate.draw();
+            productDataMy.forEach((item) => AdsBoard.pageMyProduct.draw(item));
         })
         .catch(error => {
             alert("Ошибка");

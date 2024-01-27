@@ -44,7 +44,6 @@
             title.innerText = productDataMy.title;
             about.innerText = productDataMy.about;
             sum.innerText = productDataMy.sum + " ₽";
-            section.id = productDataMy.userId;
 
             image.append(imageElement);
 

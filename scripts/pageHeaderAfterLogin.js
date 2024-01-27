@@ -23,7 +23,7 @@
             let myList = document.createElement('button');
             myList.className = 'header__burger__item h1';
             myList.textContent = 'Мои объявления';
-            myList.addEventListener("click", goToMyProduct);
+            myList.addEventListener("click", getMyProduct);
 
             let exit = document.createElement('button');
             exit.className = 'header__burger__item h1';
@@ -47,11 +47,7 @@
         document.querySelector("main").innerHTML = "";
         getProduct();
     }
-    function goToMyProduct() {
-        document.querySelector("main").innerHTML = "";
-        app.pageMyProductCreate.draw();
-        getMyProduct();
-    }
+
     function goToExit() {
         document.cookie = "PHPSESSID=;"
         document.querySelector("main").innerHTML = "";
