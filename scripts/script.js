@@ -84,7 +84,7 @@ const login = () => { //Функция для авторизации
 }
 
 const getProduct = () => {
-    fetch('../src/product.php', {
+    fetch(`../src/product.php`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const getProduct = () => {
 
 
 const getMyProduct = () => {
-    fetch('../src/productMy.php', {
+    fetch(`../src/productMy.php`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -118,10 +118,15 @@ const getMyProduct = () => {
     })
         .then(response => response.json())
         .then(productDataMy => {
-            console.log(productDataMy);
-            document.querySelector("main").innerHTML = "";
-            AdsBoard.pageMyProductCreate.draw();
-            productDataMy.forEach((item) => AdsBoard.pageMyProduct.draw(item));
+            if(productDataMy.code) {
+                alert(productDataMy.message);
+                // Надо сделать <div> с надписью;
+            } else {
+                console.log(productDataMy);
+                document.querySelector("main").innerHTML = "";
+                AdsBoard.pageMyProductCreate.draw();
+                productDataMy.forEach((item) => AdsBoard.pageMyProduct.draw(item));
+            }
         })
         .catch(error => {
             alert("Ошибка");
@@ -139,16 +144,16 @@ const createProduct = () => { //Функция для добавления но�
     const title = document.getElementById('title').value;
     const about = document.getElementById('about').value;
     const sum = document.getElementById('sum').value;
-    //const image = document.getElementById('image').value;
+    const image = document.querySelector("#image").files[0];
 
     const dataCreateProduct = {
         title: title,
         about: about,
         sum: sum,
-        //image: image
+        image: image
     };
 
-    fetch("../src/product.php", {
+    fetch(`../src/product.php`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -166,8 +171,21 @@ const createProduct = () => { //Функция для добавления но�
         });
 }
 
+function upload() {
+    let data = new FormData();
+    data.append("image", document.querySelector("#image").files[0]);
+
+    fetch(`../src/upload.php`, {
+        method: "POST",
+        body: data,
+    }).then(r => {
+        console.log(data);
+    })
+}
+
+
 const deleteProduct = () => {
-    fetch('../src/product.php', {
+    fetch(`../src/product.php`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -183,12 +201,29 @@ const deleteProduct = () => {
         });
 }
 
-const goToPhone = () => {
-    document.querySelector(".product__phone").innerHTML = "";
 
-    // const productId = document.getElementById('product_id').value;
 
-    fetch('../src/phone.php', {
+
+function goToPhone(){
+    // document.querySelector(".product__phone").remove();
+
+    //Для удаления именно той секции
+    // let buttons = document.querySelectorAll('.product__phone');
+    // buttons.forEach(function(button) {
+    //     button.addEventListener('click', function() {
+    //         let section = button.closest('section');
+    //         button.id = section.id;
+    //         button.remove();
+    //     });
+    // });
+
+    let button = document.querySelector('.product__phone');
+    let section = button.closest('section');
+    let productId = section.id;
+
+    console.log(productId);
+
+    fetch(`../src/phone.php?productId=${encodeURIComponent(productId)}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -198,10 +233,11 @@ const goToPhone = () => {
         .then(phoneData => {
             console.log(phoneData);
             phoneData.forEach((item) => AdsBoard.pageProductPhone.draw(item));
-            AdsBoard.pageProductPhone.draw();
         })
         .catch(error => {
-            alert("Ошибка");
+            //alert("Ошибка");
             console.error("Ошибка:", error);
         });
 }
+
+

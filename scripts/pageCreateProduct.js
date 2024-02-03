@@ -35,12 +35,14 @@
 
             let block4 = document.createElement('div');
             block4.className = 'section__picture';
-            let img = document.createElement('img');
+            let img = document.createElement('input');
             img.className = 'product__image';
+            img.type = 'file';
+            img.id = 'image';
             let button = document.createElement('button');
             button.className = 'button';
             button.textContent = 'Загрузить фото';
-            //button.addEventListener("click", goToLoad);
+            button.addEventListener("click", upload);
 
             let block5 = document.createElement('div');
             block5.className = 'section__save';
