@@ -7,14 +7,12 @@
             section.className = 'product';
 
             let block1 = document.createElement('div');
-            block1.className = 'product__block';
+            block1.className = 'product__block1';
             let image = document.createElement('div');
             image.className = 'product__image';
             let imageElement = document.createElement("img");
             imageElement.className = "product__image-fit";
             imageElement.alt = "Фотка товара";
-            //let phone = document.createElement('div');
-            //phone.className = 'product__phone';
             let phone = document.createElement('button');
             phone.className = 'product__phone';
             phone.textContent = 'Показать телефон';
@@ -36,11 +34,11 @@
             name.className = 'product__name';
 
             imageElement.src = productData.image;
-            //phone.innerText = productData.phone;
             title.innerText = productData.title;
             about.innerText = productData.about;
             name.innerText = "Продавец: " + productData.name;
             sum.innerText = productData.sum + " ₽";
+            section.id = productData.product_id;
 
             image.append(imageElement);
 

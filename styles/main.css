@@ -139,6 +139,13 @@
     justify-content: space-between;
 }
 
+.product__block1 {
+    display: flex;
+    flex-direction: column;
+    border: red 1px solid;
+    justify-content: space-between;
+}
+
 .product__block__grow {
     flex-grow: 100;
 }

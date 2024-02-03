@@ -7,7 +7,7 @@
             section.className = 'product';
 
             let block1 = document.createElement('div');
-            block1.className = 'product__block';
+            block1.className = 'product__block1';
             let image = document.createElement('div');
             image.className = 'product__image';
             let imageElement = document.createElement("img");
@@ -44,6 +44,7 @@
             title.innerText = productDataMy.title;
             about.innerText = productDataMy.about;
             sum.innerText = productDataMy.sum + " ₽";
+            section.id = productDataMy.product_id;
 
             image.append(imageElement);
 

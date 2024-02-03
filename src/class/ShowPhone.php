@@ -6,6 +6,7 @@ class ShowPhone
 {
     public function showPhone($productId)
     {
+        echo $productId;
         $showPhone = Database::query("SELECT * FROM product LEFT JOIN users ON product.user_id = users.user_id WHERE product_id = '$productId'");
         if (!$showPhone) { // Успешный поиск телефона
             echo "Ошибка при выполнении поиска телефона";

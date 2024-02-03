@@ -1,18 +1,17 @@
 <?php
 require_once("Database.php");
 
-
 class ProductShowMy
 {
     public function showMyProduct($userId)
     {
         $showMyProduct = Database::query("SELECT * FROM product LEFT JOIN users ON product.user_id = users.user_id WHERE product.user_id = '$userId'");
         if (!$showMyProduct) { // Успешный поиск списка товаров
-            echo "Ошибка при выполнении поиска товара";
+            echo "Ошибка поиска товаров";
             return;
         }
         if (!mysqli_num_rows($showMyProduct) > 0) { //Если товары найдены
-            echo "Товар не найден";
+            echo json_encode(["code" => 1, "message" => "Нет товаров"]);
             return;
         }
         $productDataMy = []; //Создал ассоциативный массив
