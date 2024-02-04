@@ -35,14 +35,25 @@
 
             let block4 = document.createElement('div');
             block4.className = 'section__picture';
-            let img = document.createElement('input');
+            let img = document.createElement('div');
             img.className = 'product__image';
-            img.type = 'file';
-            img.id = 'image';
-            let button = document.createElement('button');
+            let button = document.createElement('input');
+            button.type = 'file';
+            button.id = 'image';
             button.className = 'button';
             button.textContent = 'Загрузить фото';
-            button.addEventListener("click", upload);
+            //button.addEventListener("click", upload);
+
+            // let block4 = document.createElement('div');
+            // block4.className = 'section__picture';
+            // let img = document.createElement('input');
+            // img.className = 'product__image';
+            // img.type = 'file';
+            // img.id = 'image';
+            // let button = document.createElement('button');
+            // button.className = 'button';
+            // button.textContent = 'Загрузить фото';
+            // button.addEventListener("click", upload);
 
             let block5 = document.createElement('div');
             block5.className = 'section__save';

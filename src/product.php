@@ -15,13 +15,12 @@ $userId = $_SESSION['user_id'];
 $inputData = file_get_contents('php://input');
 $productData = json_decode($inputData, true);
 
-
 //REST API для таблицы product
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового объявления
-    $title = $productData['title'];
-    $about = $productData['about'];
-    $sum = $productData['sum'];
-    $image = $productData['image'];
+    $title = $_POST['title'];
+    $about = $_POST['about'];
+    $sum = $_POST['sum'];
+    $image = "images/" . $_FILES["image"]["name"];
 
     $productCreation = new ProductCreation();
     $productCreation->productCreation($userId, $title, $about, $sum, $image);

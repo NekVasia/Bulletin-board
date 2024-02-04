@@ -144,23 +144,20 @@ const createProduct = () => { //Функция для добавления но�
     const title = document.getElementById('title').value;
     const about = document.getElementById('about').value;
     const sum = document.getElementById('sum').value;
-    const image = document.querySelector("#image").files[0];
+    const image = document.querySelector('#image').files[0];
 
-    const dataCreateProduct = {
-        title: title,
-        about: about,
-        sum: sum,
-        image: image
-    };
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('about', about);
+    formData.append('sum', sum);
+    formData.append('image', image);
+
+    console.log(formData);
 
     fetch(`../src/product.php`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataCreateProduct),
+        body: formData,
     })
-
         .then(response => response.json())
         .then(result => {
             alert("Вы успешно добавили продукт");
@@ -169,18 +166,6 @@ const createProduct = () => { //Функция для добавления но�
         .catch(error => {
             console.log(error);
         });
-}
-
-function upload() {
-    let data = new FormData();
-    data.append("image", document.querySelector("#image").files[0]);
-
-    fetch(`../src/upload.php`, {
-        method: "POST",
-        body: data,
-    }).then(r => {
-        console.log(data);
-    })
 }
 
 

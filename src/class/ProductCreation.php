@@ -26,6 +26,8 @@ class ProductCreation
             $queryValue = $queryValue . ", '$image'";
         }
         $creation = Database::query("INSERT INTO product ($queryField) VALUES ($queryValue)");
+        $images = "D:/WORK/Bulletin-board/images/" . $_FILES["image"]["name"];
+        move_uploaded_file($_FILES["image"]["tmp_name"], $images);
         if ($creation) { // Успешная регистрация
             echo "Товар успешно создан";
         } else { // Ошибка при регистрации
