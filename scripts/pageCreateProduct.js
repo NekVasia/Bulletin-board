@@ -35,14 +35,26 @@
 
             let block4 = document.createElement('div');
             block4.className = 'section__picture';
-            let img = document.createElement('div');
+            let img = document.createElement('img');
             img.className = 'product__image';
+            //img.src = button.files[0];
+
             let button = document.createElement('input');
             button.type = 'file';
             button.id = 'image';
+            //button.accepts=".jpg, .jpeg, .png, .gif"
             button.className = 'button';
             button.textContent = 'Загрузить фото';
-            //button.addEventListener("click", upload);
+
+            //Предпросмотр картинки
+            button.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function() {
+                    img.src = reader.result;
+                };
+                reader.readAsDataURL(file);
+            });
 
             // let block4 = document.createElement('div');
             // block4.className = 'section__picture';

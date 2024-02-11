@@ -39,6 +39,7 @@
             name.innerText = "Продавец: " + productData.name;
             sum.innerText = productData.sum + " ₽";
             section.id = productData.product_id;
+            //phone.setAttribute('id', productData.product_id);
 
             image.append(imageElement);
 

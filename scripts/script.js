@@ -152,8 +152,6 @@ const createProduct = () => { //Функция для добавления но�
     formData.append('sum', sum);
     formData.append('image', image);
 
-    console.log(formData);
-
     fetch(`../src/product.php`, {
         method: "POST",
         body: formData,
@@ -189,24 +187,9 @@ const deleteProduct = () => {
 
 
 
-function goToPhone(){
-    // document.querySelector(".product__phone").remove();
-
-    //Для удаления именно той секции
-    // let buttons = document.querySelectorAll('.product__phone');
-    // buttons.forEach(function(button) {
-    //     button.addEventListener('click', function() {
-    //         let section = button.closest('section');
-    //         button.id = section.id;
-    //         button.remove();
-    //     });
-    // });
-
-    let button = document.querySelector('.product__phone');
-    let section = button.closest('section');
+function goToPhone(event){
+    let section = event.target.closest('.product');
     let productId = section.id;
-
-    console.log(productId);
 
     fetch(`../src/phone.php?productId=${encodeURIComponent(productId)}`, {
         method: "GET",
