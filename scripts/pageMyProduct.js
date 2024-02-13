@@ -33,7 +33,7 @@
             let buttonChange = document.createElement('button');
             buttonChange.className = 'button';
             buttonChange.textContent = 'Изменить';
-            //buttonChange.addEventListener('click', changeProduct);
+            buttonChange.addEventListener('click', goToChangeProduct);
 
             let buttonDelete = document.createElement('button');
             buttonDelete.className = 'button';

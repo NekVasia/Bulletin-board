@@ -5,6 +5,7 @@ require_once('class/ProductCreation.php');
 require_once('class/ProductSearch.php');
 require_once('class/ProductDelete.php');
 require_once('class/ProductShow.php');
+require_once('class/ProductChange.php');
 
 if (!isset($_SESSION)) {
     session_start();
@@ -31,23 +32,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товар�
     $productSearch->showProduct();
 }
 
-//if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод моего списка товаров
-//    $productSearch = new ProductShowMy();
-//    $productSearch->showMyProduct($userId);
-//}
+if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Вывод списка товаров
+    $putData = json_decode(file_get_contents("php://input"), true);
+    echo json_encode($putData);
 
+    $productId = $putData['productId'];
+    $title = $putData['title'];
+    $about = $putData['about'];
+    $sum = $putData['sum'];
+    $image = "images/" . $_FILES["image"]["name"];
 
-//if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товара
-//    $productSearch = new ProductSearch();
-//
-//    if (isset($_GET['user_id'])) { //Поиск по id
-//        $userId = 30; //$userData['user_id'];
-//        $productSearch->searchProduct($userId);
-//    }
-//}
+    $productChange = new ProductChange();
+    $productChange->changeProduct($productId, $title, $about, $sum, $image);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
-    $productId = $_GET['product_id']; //$productId = 2; Так работает
+    $productId = $_GET['productId']; //$productId = 2; Так работает
 
     $productDelete = new ProductDelete();
     $productDelete->deleteProduct($productId);

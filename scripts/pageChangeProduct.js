@@ -1,6 +1,6 @@
 (function (app) {
-    app.pageCreateProduct = {
-        draw: function () {
+    app.pageChangeProduct = {
+        draw: function (productData) {
             let main = document.querySelector('main');
 
             let section = document.createElement('section');
@@ -37,7 +37,6 @@
             block4.className = 'section__picture';
             let img = document.createElement('img');
             img.className = 'product__image';
-            //img.src = button.files[0];
 
             let button = document.createElement('input');
             button.type = 'file';
@@ -56,24 +55,18 @@
                 reader.readAsDataURL(file);
             });
 
-            // let block4 = document.createElement('div');
-            // block4.className = 'section__picture';
-            // let img = document.createElement('input');
-            // img.className = 'product__image';
-            // img.type = 'file';
-            // img.id = 'image';
-            // let button = document.createElement('button');
-            // button.className = 'button';
-            // button.textContent = 'Загрузить фото';
-            // button.addEventListener("click", upload);
-
             let block5 = document.createElement('div');
             block5.className = 'section__save';
             let buttonSave = document.createElement('button');
             buttonSave.className = 'button__save';
-            buttonSave.textContent = 'Сохранить';
-            buttonSave.onclick = createProduct;
-            //buttonSave.addEventListener("click", goToSave);
+            buttonSave.textContent = 'Изменить';
+            buttonSave.onclick = changeProduct;
+
+            input1.value = productData.title;
+            input2.value = productData.about;
+            input3.value = productData.sum;
+            section.id = productData.product_id;
+            img.src = productData.image;
 
             block1.append(p1);
             block1.append(input1);

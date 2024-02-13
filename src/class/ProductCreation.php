@@ -28,11 +28,11 @@ class ProductCreation
         $creation = Database::query("INSERT INTO product ($queryField) VALUES ($queryValue)");
         $images = "D:/WORK/Bulletin-board/images/" . $_FILES["image"]["name"];
         move_uploaded_file($_FILES["image"]["tmp_name"], $images);
-        if ($creation) { // Успешная регистрация
-            echo "Товар успешно создан";
-        } else { // Ошибка при регистрации
-            echo "Ошибка при создании товара";
+        if (!$creation) { // Успешная регистрация
+            echo json_encode(["code" => 0, "message" => "Ошибка при создании товара!"]);
+            return;
         }
+        echo json_encode(["code" => 1, "message" => "Товар успешно создан"]);
     }
 }
 

@@ -135,11 +135,6 @@ const getMyProduct = () => {
 }
 
 
-// const showPhone = () => {
-//     document.querySelector(".product__phone").innerHTML ="";
-//     productData.forEach((item) => AdsBoard.pageProduct.draw(item));
-// }
-
 const createProduct = () => { //Функция для добавления нового продукта
     const title = document.getElementById('title').value;
     const about = document.getElementById('about').value;
@@ -158,8 +153,8 @@ const createProduct = () => { //Функция для добавления но�
     })
         .then(response => response.json())
         .then(result => {
-            alert("Вы успешно добавили продукт");
             console.log(result);
+            location.reload();
         })
         .catch(error => {
             console.log(error);
@@ -167,8 +162,98 @@ const createProduct = () => { //Функция для добавления но�
 }
 
 
-const deleteProduct = () => {
+const goToChangeProduct = (event) => {
+    let section = event.target.closest('.product');
+    let productId = section.id;
+
+    fetch(`../src/preview.php?productId=${encodeURIComponent(productId)}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => response.json())
+        .then(productData => {
+            console.log(productData);
+            document.querySelector("main").innerHTML = "";
+            productData.forEach((item) => AdsBoard.pageChangeProduct.draw(item));
+        })
+        .catch(error => {
+            alert("Ошибка");
+            console.error("Ошибка:", error);
+        });
+}
+
+
+// const changeProduct = (event) => { //Функция для редактирования товара
+//     const section = event.target.closest('.product__create');
+//     const productId = section.id;
+//
+//     const title = document.getElementById('title').value;
+//     const about = document.getElementById('about').value;
+//     const sum = document.getElementById('sum').value;
+//     const image = document.querySelector('#image').files[0];
+//
+//     const formData = new FormData();
+//     formData.append('productId', productId);
+//     formData.append('title', title);
+//     formData.append('about', about);
+//     formData.append('sum', sum);
+//     formData.append('image', image);
+//
+//     fetch(`../src/product.php`, {
+//         method: "PUT", //Переделать!
+//         body: formData,
+//     })
+//         .then(response => response.json())
+//         .then(result => {
+//             console.log(result);
+//             location.reload();
+//         })
+//         .catch(error => {
+//             console.log(error);
+//         });
+// }
+
+const changeProduct = (event) => {
+    const section = event.target.closest('.product__create');
+    const productId = section.id;
+    const title = document.getElementById('title').value;
+    const about = document.getElementById('about').value;
+    const sum = document.getElementById('sum').value;
+    const image = document.querySelector('#image').files[0];
+
+    const data = {
+        productId: productId,
+        title: title,
+        about: about,
+        sum: sum,
+        image: image
+    };
+
+    const jsonData = JSON.stringify(data);
+
     fetch(`../src/product.php`, {
+        method: "PUT",
+        body: jsonData,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+const deleteProduct = (event) => {
+    let section = event.target.closest('.product');
+    let productId = section.id;
+
+    fetch(`../src/product.php?productId=${encodeURIComponent(productId)}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -176,12 +261,10 @@ const deleteProduct = () => {
     })
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            if(result.code) {
+                location.reload();
+            }
         })
-        .catch(error => {
-            alert("Ошибка");
-            console.error("Ошибка:", error);
-        });
 }
 
 
