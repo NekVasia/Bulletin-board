@@ -163,67 +163,14 @@ const createProduct = () => { //Функция для добавления но�
 
 
 const goToChangeProduct = (event) => {
-    let section = event.target.closest('.product');
-    let productId = section.id;
-
-    fetch(`../src/preview.php?productId=${encodeURIComponent(productId)}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-        .then(response => response.json())
-        .then(productData => {
-            console.log(productData);
-            document.querySelector("main").innerHTML = "";
-            productData.forEach((item) => AdsBoard.pageChangeProduct.draw(item));
-        })
-        .catch(error => {
-            alert("Ошибка");
-            console.error("Ошибка:", error);
-        });
-}
-
-
-// const changeProduct = (event) => { //Функция для редактирования товара
-//     const section = event.target.closest('.product__create');
-//     const productId = section.id;
-//
-//     const title = document.getElementById('title').value;
-//     const about = document.getElementById('about').value;
-//     const sum = document.getElementById('sum').value;
-//     const image = document.querySelector('#image').files[0];
-//
-//     const formData = new FormData();
-//     formData.append('productId', productId);
-//     formData.append('title', title);
-//     formData.append('about', about);
-//     formData.append('sum', sum);
-//     formData.append('image', image);
-//
-//     fetch(`../src/product.php`, {
-//         method: "PUT", //Переделать!
-//         body: formData,
-//     })
-//         .then(response => response.json())
-//         .then(result => {
-//             console.log(result);
-//             location.reload();
-//         })
-//         .catch(error => {
-//             console.log(error);
-//         });
-// }
-
-const changeProduct = (event) => {
-    const section = event.target.closest('.product__create');
+    const section = event.target.closest('.product');
     const productId = section.id;
-    const title = document.getElementById('title').value;
-    const about = document.getElementById('about').value;
-    const sum = document.getElementById('sum').value;
-    const image = document.querySelector('#image').files[0];
+    const title = section.querySelector('.product__title').textContent;
+    const about = section.querySelector('.product__about').textContent;
+    const sum = section.querySelector('.product__sum').textContent;
+    const image = section.querySelector('.product__image-fit').src;
 
-    const data = {
+    const previewData = {
         productId: productId,
         title: title,
         about: about,
@@ -231,13 +178,34 @@ const changeProduct = (event) => {
         image: image
     };
 
-    const jsonData = JSON.stringify(data);
+    document.querySelector("main").innerHTML = "";
+    AdsBoard.pageChangeProduct.draw(previewData);
+}
+
+
+const changeProduct = (event) => { //Функция для редактирования товара
+    const section = event.target.closest('.product__create');
+    const productId = section.id;
+
+    const title = document.getElementById('title').value;
+    const about = document.getElementById('about').value;
+    const sum = document.getElementById('sum').value;
+    const image = document.querySelector('#image').files[0];
+
+    const formData = new FormData();
+    formData.append('productId', productId);
+    formData.append('title', title);
+    formData.append('about', about);
+    formData.append('sum', sum);
+    formData.append('image', image);
+
+    console.log(formData);
 
     fetch(`../src/product.php`, {
-        method: "PUT",
-        body: jsonData,
+        method: "PUT", //Переделать!
+        body: formData,
         headers: {
-            'Content-Type': 'application/json'
+             'Content-Type': 'application/json'
         }
     })
         .then(response => response.json())
@@ -249,6 +217,42 @@ const changeProduct = (event) => {
             console.log(error);
         });
 }
+
+// const changeProduct = (event) => {
+//     const section = event.target.closest('.product__create');
+//     const productId = section.id;
+//     const title = document.getElementById('title').value;
+//     const about = document.getElementById('about').value;
+//     const sum = document.getElementById('sum').value;
+//     const image = document.querySelector('#image').files[0];
+//
+//     const data = {
+//         productId: productId,
+//         title: title,
+//         about: about,
+//         sum: sum,
+//         image: image
+//     };
+//
+//     const jsonData = JSON.stringify(data);
+//
+//     fetch(`../src/product.php`, {
+//         method: "PUT",
+//         body: jsonData,
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//         .then(response => response.json())
+//         .then(result => {
+//             console.log(result);
+//             location.reload();
+//         })
+//         .catch(error => {
+//             console.log(error);
+//         });
+// }
+
 const deleteProduct = (event) => {
     let section = event.target.closest('.product');
     let productId = section.id;

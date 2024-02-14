@@ -1,6 +1,6 @@
 (function (app) {
     app.pageChangeProduct = {
-        draw: function (productData) {
+        draw: function (previewData) {
             let main = document.querySelector('main');
 
             let section = document.createElement('section');
@@ -62,11 +62,11 @@
             buttonSave.textContent = 'Изменить';
             buttonSave.onclick = changeProduct;
 
-            input1.value = productData.title;
-            input2.value = productData.about;
-            input3.value = productData.sum;
-            section.id = productData.product_id;
-            img.src = productData.image;
+            input1.value = previewData.title;
+            input2.value = previewData.about;
+            input3.value = previewData.sum;
+            section.id = previewData.productId;
+            img.src = previewData.image;
 
             block1.append(p1);
             block1.append(input1);
