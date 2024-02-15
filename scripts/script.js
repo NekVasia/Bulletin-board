@@ -46,7 +46,6 @@ const registration = () => { //Функция для регистрации
 
         .then(response => response.json())
         .then(result => {
-            console.log(result);
             if(result.code) {
                 login();
             } else {
@@ -92,7 +91,6 @@ const getProduct = () => {
     })
         .then(response => response.json())
         .then(productData => {
-            console.log(productData);
             if (document.querySelector(".main")) {
                 document.querySelector(".main").innerHTML = "";
             }
@@ -122,7 +120,6 @@ const getMyProduct = () => {
                 alert(productDataMy.message);
                 // Надо сделать <div> с надписью;
             } else {
-                console.log(productDataMy);
                 document.querySelector("main").innerHTML = "";
                 AdsBoard.pageMyProductCreate.draw();
                 productDataMy.forEach((item) => AdsBoard.pageMyProduct.draw(item));
@@ -153,7 +150,6 @@ const createProduct = () => { //Функция для добавления но�
     })
         .then(response => response.json())
         .then(result => {
-            console.log(result);
             location.reload();
         })
         .catch(error => {
@@ -183,30 +179,24 @@ const goToChangeProduct = (event) => {
 }
 
 
-const changeProduct = (event) => { //Функция для редактирования товара
-    const section = event.target.closest('.product__create');
-    const productId = section.id;
-
+const changeProduct = () => { //Функция для редактирования товара
+    const productId = document.querySelector('.product__create').id;
     const title = document.getElementById('title').value;
     const about = document.getElementById('about').value;
     const sum = document.getElementById('sum').value;
     const image = document.querySelector('#image').files[0];
 
-    const formData = new FormData();
-    formData.append('productId', productId);
-    formData.append('title', title);
-    formData.append('about', about);
-    formData.append('sum', sum);
-    formData.append('image', image);
+    const formData = {
+        productId: productId,
+        title: title,
+        about: about,
+        sum: sum,
+        image: image
+    };
 
-    console.log(formData);
-
-    fetch(`../src/product.php`, {
-        method: "PUT", //Переделать!
+    fetch(`../src/productMy.php`, {
+        method: "POST",
         body: formData,
-        headers: {
-             'Content-Type': 'application/json'
-        }
     })
         .then(response => response.json())
         .then(result => {

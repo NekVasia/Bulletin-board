@@ -32,19 +32,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товар�
     $productSearch->showProduct();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Вывод списка товаров
-    $putData = json_decode(file_get_contents("php://input"), true);
-    echo json_encode($putData);
-
-    $productId = $putData['productId'];
-    $title = $putData['title'];
-    $about = $putData['about'];
-    $sum = $putData['sum'];
-    $image = "images/" . $_FILES["image"]["name"];
-
-    $productChange = new ProductChange();
-    $productChange->changeProduct($productId, $title, $about, $sum, $image);
-}
+//if ($_SERVER["REQUEST_METHOD"] == "PUT") { //Вывод списка товаров
+//    $putData = json_decode(file_get_contents("php://input"), true);
+//    echo json_encode($putData);
+//
+//    $productId = $putData['productId'];
+//    $title = $putData['title'];
+//    $about = $putData['about'];
+//    $sum = $putData['sum'];
+//    $image = "images/" . $_FILES["image"]["name"];
+//
+//    $productChange = new ProductChange();
+//    $productChange->changeProduct($productId, $title, $about, $sum, $image);
+//}
 
 if ($_SERVER["REQUEST_METHOD"] == "DELETE") { // Удаление пользователя
     $productId = $_GET['productId']; //$productId = 2; Так работает
