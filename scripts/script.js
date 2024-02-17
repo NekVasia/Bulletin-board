@@ -1,5 +1,8 @@
 let AdsBoard = {};
 
+const currentUrl = window.location.href;
+console.log(currentUrl);
+
 function getCookie(name) { //Функция проверки куки
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -43,7 +46,6 @@ const registration = () => { //Функция для регистрации
         },
         body: JSON.stringify(userRegistration),
     })
-
         .then(response => response.json())
         .then(result => {
             if(result.code) {
@@ -67,10 +69,8 @@ const login = () => { //Функция для авторизации
             "Content-Type": "application/json",
         },
     })
-
         .then(response => response.json())
         .then(result => {
-            console.log(result);
             if(result.code) {
                 getProduct();
             } else {
@@ -117,8 +117,9 @@ const getMyProduct = () => {
         .then(response => response.json())
         .then(productDataMy => {
             if(productDataMy.code) {
-                alert(productDataMy.message);
-                // Надо сделать <div> с надписью;
+                document.querySelector('main').innerHTML = "";
+                AdsBoard.pageMyProductCreate.draw();
+                AdsBoard.pageMyProductEmpty.draw();
             } else {
                 document.querySelector("main").innerHTML = "";
                 AdsBoard.pageMyProductCreate.draw();
@@ -131,6 +132,10 @@ const getMyProduct = () => {
         });
 }
 
+function goToCreateProduct() {
+    document.querySelector("main").innerHTML = "";
+    AdsBoard.pageCreateProduct.draw();
+}
 
 const createProduct = () => { //Функция для добавления нового продукта
     const title = document.getElementById('title').value;
@@ -186,13 +191,12 @@ const changeProduct = () => { //Функция для редактировани
     const sum = document.getElementById('sum').value;
     const image = document.querySelector('#image').files[0];
 
-    const formData = {
-        productId: productId,
-        title: title,
-        about: about,
-        sum: sum,
-        image: image
-    };
+    const formData = new FormData();
+    formData.append('productId', productId);
+    formData.append('title', title);
+    formData.append('about', about);
+    formData.append('sum', sum);
+    formData.append('image', image);
 
     fetch(`../src/productMy.php`, {
         method: "POST",
@@ -208,40 +212,7 @@ const changeProduct = () => { //Функция для редактировани
         });
 }
 
-// const changeProduct = (event) => {
-//     const section = event.target.closest('.product__create');
-//     const productId = section.id;
-//     const title = document.getElementById('title').value;
-//     const about = document.getElementById('about').value;
-//     const sum = document.getElementById('sum').value;
-//     const image = document.querySelector('#image').files[0];
-//
-//     const data = {
-//         productId: productId,
-//         title: title,
-//         about: about,
-//         sum: sum,
-//         image: image
-//     };
-//
-//     const jsonData = JSON.stringify(data);
-//
-//     fetch(`../src/product.php`, {
-//         method: "PUT",
-//         body: jsonData,
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//         .then(response => response.json())
-//         .then(result => {
-//             console.log(result);
-//             location.reload();
-//         })
-//         .catch(error => {
-//             console.log(error);
-//         });
-// }
+
 
 const deleteProduct = (event) => {
     let section = event.target.closest('.product');
@@ -263,10 +234,9 @@ const deleteProduct = (event) => {
 
 
 
-
-function goToPhone(event){
-    let section = event.target.closest('.product');
-    let productId = section.id;
+const goToPhone = (event) =>{
+    const section = event.target.closest('.product');
+    const productId = section.id;
 
     fetch(`../src/phone.php?productId=${encodeURIComponent(productId)}`, {
         method: "GET",
@@ -276,11 +246,9 @@ function goToPhone(event){
     })
         .then(response => response.json())
         .then(phoneData => {
-            console.log(phoneData);
             phoneData.forEach((item) => AdsBoard.pageProductPhone.draw(item));
         })
         .catch(error => {
-            //alert("Ошибка");
             console.error("Ошибка:", error);
         });
 }

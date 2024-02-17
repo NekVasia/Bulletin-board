@@ -10,6 +10,7 @@
             block1.className = 'product__block1';
             let image = document.createElement('div');
             image.className = 'product__image';
+            image.src  = 'images/noProductPictures.png';
             let imageElement = document.createElement("img");
             imageElement.className = "product__image-fit";
             imageElement.alt = "Фотка товара";
@@ -40,7 +41,12 @@
             buttonDelete.textContent = 'Удалить';
             buttonDelete.addEventListener('click', deleteProduct);
 
-            imageElement.src = productDataMy.image;
+            if (productDataMy.image) {
+                imageElement.src = productDataMy.image;
+            } else {
+                imageElement.src = 'images/noProductPictures.png';
+            }
+
             title.innerText = productDataMy.title;
             about.innerText = productDataMy.about;
             sum.innerText = productDataMy.sum + " ₽";

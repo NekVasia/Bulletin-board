@@ -16,12 +16,16 @@ class ProductChange
             $queryField = $queryField . ", sum = '$sum'";
         }
         if (!empty($image)) {
-            $queryField = $queryField . ", image = '$image'";
+            $imagePath = 'images/' . $image;
+            $queryField = $queryField . ", image = '$imagePath'";
         }
         $update = Database::query("UPDATE product SET $queryField WHERE product_id = $productId");
-        $images = "D:/WORK/Bulletin-board/images/" . $_FILES["image"]["name"];
-
-        move_uploaded_file($_FILES["image"]["tmp_name"], $images);
+        if ($image) {
+            $images = "D:/WORK/Bulletin-board/images/" . $image;
+            if (isset($_FILES["image"]["tmp_name"])) {
+                move_uploaded_file($_FILES["image"]["tmp_name"], $images);
+            }
+        }
 
         if (!$update) { // Успешная регистрация
             echo json_encode(["code" => 0, "message" => "Ошибка при создании товара!"]);

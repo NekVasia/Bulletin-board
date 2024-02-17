@@ -13,6 +13,7 @@
             let imageElement = document.createElement("img");
             imageElement.className = "product__image-fit";
             imageElement.alt = "Фотка товара";
+            imageElement.src  = 'images/noProductPictures.png';
             let phone = document.createElement('button');
             phone.className = 'product__phone';
             phone.textContent = 'Показать телефон';
@@ -33,13 +34,14 @@
             let name = document.createElement('div');
             name.className = 'product__name';
 
-            imageElement.src = productData.image;
+            if (productData.image) {
+                imageElement.src = productData.image;
+            }
             title.innerText = productData.title;
             about.innerText = productData.about;
             name.innerText = "Продавец: " + productData.name;
             sum.innerText = productData.sum + " ₽";
             section.id = productData.product_id;
-            //phone.setAttribute('id', productData.product_id);
 
             image.append(imageElement);
 

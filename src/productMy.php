@@ -20,11 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товар�
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //Создание нового объявления
-    $productId = $_POST['productId'];
-    $title = $_POST['title'];
-    $about = $_POST['about'];
-    $sum = $_POST['sum'];
-    $image = "images/" . $_FILES["image"]["name"];
+    $productId = $_POST['productId'] ?? null;
+    $title = $_POST['title'] ?? null;
+    $about = $_POST['about'] ?? null;
+    $sum = $_POST['sum'] ?? null;
+    $image = null;
+    if (isset($_FILES["image"]["name"])) {
+        $image = $_FILES["image"]["name"];
+    }
 
     $productChange = new ProductChange();
     $productChange->changeProduct($productId, $title, $about, $sum, $image);

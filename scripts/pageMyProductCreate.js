@@ -16,9 +16,4 @@
             main.append(createDiv);
         }
     }
-
-    function goToCreateProduct() {
-        document.querySelector("main").innerHTML = "";
-        app.pageCreateProduct.draw();
-    }
 })(AdsBoard);
