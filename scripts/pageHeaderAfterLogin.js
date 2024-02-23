@@ -15,9 +15,9 @@
             let burger = document.createElement('div');
             burger.className = 'header__burger';
 
-            let list = createButtonElement('header__burger__item h1', 'Лента', goToProduct);
-            let myList = createButtonElement('header__burger__item h1', 'Мои объявления', getMyProduct);
-            let exit = createButtonElement('header__burger__item h1', 'Выход', goToExit);
+            let list = app.Create.buttonElement('header__burger__item h1', 'Лента', goToProduct);
+            let myList = app.Create.buttonElement('header__burger__item h1', 'Мои объявления', getMyProduct);
+            let exit = app.Create.buttonElement('header__burger__item h1', 'Выход', goToExit);
 
             logo.append(title);
 
@@ -30,16 +30,6 @@
 
             header.append(container);
         }
-    }
-
-    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
-        let button = document.createElement('button');
-
-        button.className = buttonClass;
-        button.textContent = buttonText;
-        button.onclick = buttonOnclick;
-
-        return button;
     }
 
     function goToProduct() {

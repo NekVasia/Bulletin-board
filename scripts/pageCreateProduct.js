@@ -6,13 +6,13 @@
             let section = document.createElement('section');
             section.className = 'product__create';
 
-            let block1 = app.Create.DivBlock('section__input__create', 'Название:', 'input__create', 'title')
-            //let block1 = createDivBlock('section__input__create', 'Название:', 'input__create', 'title');
-            let block2 = createDivBlock('section__input__create', 'Описание:', 'input__create__about', 'about');
-            let block3 = createDivBlock('section__input__create', 'Цена:', 'input__create', 'sum');
+            let block1 = app.Create.divBlock('section__input__create', 'Название:', 'input__create', 'title');
+            let block2 = app.Create.divBlock('section__input__create', 'Описание:', 'input__create__about', 'about');
+            let block3 = app.Create.divBlock('section__input__create', 'Цена:', 'input__create', 'sum');
 
             let block4 = document.createElement('div');
             block4.className = 'section__picture';
+
             let img = document.createElement('img');
             img.className = 'product__image';
 
@@ -35,7 +35,6 @@
             block5.className = 'section__save';
 
             let buttonSave = app.Create.buttonElement('button__save', 'Сохранить', createProduct);
-            //let buttonSave = createButtonElement('button__save', 'Сохранить', createProduct);
 
             block4.append(img);
             block4.append(button);
@@ -50,33 +49,4 @@
             main.append(section);
         }
     }
-
-    function createDivBlock(blockClass, pText, inputClass, inputId) {
-        let block = document.createElement('div');
-        block.className = blockClass;
-
-        let p = document.createElement('p');
-        p.className = 'p__input';
-        p.textContent = pText;
-
-        let input = document.createElement('input');
-        input.className = inputClass;
-        input.id = inputId;
-
-        block.append(input);
-        block.append(p);
-
-        return block;
-    }
-
-    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
-        let button = document.createElement('button');
-
-        button.className = buttonClass;
-        button.textContent = buttonText;
-        button.onclick = buttonOnclick;
-
-        return button;
-    }
-
 })(AdsBoard);

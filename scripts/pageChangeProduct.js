@@ -34,7 +34,7 @@
             let block5 = document.createElement('div');
             block5.className = 'section__save';
 
-            let buttonSave = createButtonElement('button__save', 'Изменить', changeProduct);
+            let buttonSave = app.Create.buttonElement('button__save', 'Изменить', changeProduct);
 
             section.id = previewData.productId;
             img.src = previewData.image;
@@ -71,15 +71,4 @@
 
         return block;
     }
-
-    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
-        let button = document.createElement('button');
-
-        button.className = buttonClass;
-        button.textContent = buttonText;
-        button.onclick = buttonOnclick;
-
-        return button;
-    }
-
 })(AdsBoard);

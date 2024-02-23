@@ -14,8 +14,7 @@
             imageElement.className = "product__image-fit";
             imageElement.alt = "Фотка товара";
             imageElement.src  = 'images/noProductPictures.png';
-
-            let buttonPhone = createButtonElement('product__phone', 'Показать телефон', goToPhone);
+            let buttonPhone = app.Create.buttonElement('product__phone', 'Показать телефон', goToPhone);
 
             let block2 = document.createElement('div');
             block2.className = 'product__block product__block__grow';
@@ -61,15 +60,4 @@
             main.append(section);
         }
     }
-
-    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
-        let button = document.createElement('button');
-
-        button.className = buttonClass;
-        button.textContent = buttonText;
-        button.onclick = buttonOnclick;
-
-        return button;
-    }
-
 })(AdsBoard);

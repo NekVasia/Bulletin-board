@@ -13,17 +13,17 @@
             title.className = 'section__container_title h2';
             title.textContent = 'Регистрация';
 
-            let cell1 = createInputCell('email', ' Логин', 'E-mail');
-            let cell2 = createInputCell('phone', ' Телефон', 'Телефон');
-            let cell3 = createInputCell('name', ' Имя пользователя', 'ФИО');
-            let cell4 = createInputCell('password', ' Пароль', 'Пароль');
-            let cell5 = createInputCell('password_repeat', ' Подтверждение пароля', 'Подтверждение пароля');
+            let cell1 = app.Create.divInput('email', ' Логин', 'E-mail');
+            let cell2 = app.Create.divInput('phone', ' Телефон', 'Телефон');
+            let cell3 = app.Create.divInput('name', ' Имя пользователя', 'ФИО');
+            let cell4 = app.Create.divInput('password', ' Пароль', 'Пароль');
+            let cell5 = app.Create.divInput('password_repeat', ' Подтверждение пароля', 'Подтверждение пароля');
 
             let buttonContainer = document.createElement('div');
             buttonContainer.className = 'section__container__button';
 
-            let buttonRegistration = createButtonElement('section__button p__button', 'Зарегистрироваться', registration);
-            let buttonLogin = createButtonElement('section__button p__button', 'Войти', goToLogin);
+            let buttonRegistration = app.Create.buttonElement('section__button p__button', 'Зарегистрироваться', registration);
+            let buttonLogin = app.Create.buttonElement('section__button p__button', 'Войти', goToLogin);
 
             buttonContainer.append(buttonRegistration);
             buttonContainer.append(buttonLogin);
@@ -40,35 +40,6 @@
 
             main.append(section);
         }
-    }
-
-    function createInputCell(inputId, inputPlaceholder, pText) {
-        let cell = document.createElement('div');
-        cell.className = 'section__container__cell';
-
-        let input = document.createElement('input');
-        input.className = 'section__input';
-        input.id = inputId;
-        input.placeholder = inputPlaceholder;
-
-        let p = document.createElement('p');
-        p.className = 'p__input';
-        p.textContent = pText;
-
-        cell.append(input);
-        cell.append(p);
-
-        return cell;
-    }
-
-    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
-        let button = document.createElement('button');
-
-        button.className = buttonClass;
-        button.textContent = buttonText;
-        button.onclick = buttonOnclick;
-
-        return button;
     }
 
     function goToLogin() {

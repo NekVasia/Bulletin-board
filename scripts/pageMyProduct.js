@@ -31,8 +31,8 @@
             let buttonDiv = document.createElement('div');
             buttonDiv.className = 'product__button';
 
-            let buttonChange = createButtonElement('button', 'Изменить', goToChangeProduct);
-            let buttonDelete = createButtonElement('button', 'Удалить', deleteProduct);
+            let buttonChange = app.Create.buttonElement('button', 'Изменить', goToChangeProduct);
+            let buttonDelete = app.Create.buttonElement('button', 'Удалить', deleteProduct);
 
             if (productDataMy.image) {
                 imageElement.src = productDataMy.image;
@@ -67,15 +67,4 @@
             main.append(section);
         }
     }
-
-    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
-        let button = document.createElement('button');
-
-        button.className = buttonClass;
-        button.textContent = buttonText;
-        button.onclick = buttonOnclick;
-
-        return button;
-    }
-
 })(AdsBoard);
