@@ -3,6 +3,29 @@ let AdsBoard = {};
 const currentUrl = window.location.href;
 console.log(currentUrl);
 
+const strGET = window.location.search.replace( '?', '');
+console.log(strGET);
+
+// if (strGET === 'page'){
+//     getMyProduct();
+// }
+
+let params = window
+    .location
+    .search
+    .replace('?','')
+    .split('&')
+    .reduce(
+        function(p,e){
+            var a = e.split('=');
+            p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+            return p;
+        },
+        {}
+    );
+
+console.log( params['data']);
+
 function getCookie(name) { //Функция проверки куки
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -168,7 +191,7 @@ const goToChangeProduct = (event) => {
     const productId = section.id;
     const title = section.querySelector('.product__title').textContent;
     const about = section.querySelector('.product__about').textContent;
-    const sum = section.querySelector('.product__sum').textContent;
+    const sum = section.querySelector('.product__sum').textContent.slice(0,-2);
     const image = section.querySelector('.product__image-fit').src;
 
     const previewData = {
@@ -252,5 +275,3 @@ const goToPhone = (event) =>{
             console.error("Ошибка:", error);
         });
 }
-
-

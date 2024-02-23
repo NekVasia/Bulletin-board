@@ -6,47 +6,22 @@
             let section = document.createElement('section');
             section.className = 'product__create';
 
-            let block1 = document.createElement('div');
-            block1.className = 'section__input__create';
-            let p1 = document.createElement('p');
-            p1.className = 'p__input';
-            p1.textContent = 'Название:';
-            let input1 = document.createElement('input');
-            input1.className = 'input__create';
-            input1.id = 'title';
-
-            let block2 = document.createElement('div');
-            block2.className = 'section__input__create';
-            let p2 = document.createElement('p');
-            p2.className = 'p__input';
-            p2.textContent = 'Описание:';
-            let input2 = document.createElement('input');
-            input2.className = 'input__create__about';
-            input2.id = 'about';
-
-            let block3 = document.createElement('div');
-            block3.className = 'section__input__create';
-            let p3 = document.createElement('p');
-            p3.className = 'p__input';
-            p3.textContent = 'Цена:';
-            let input3 = document.createElement('input');
-            input3.className = 'input__create';
-            input3.id = 'sum';
+            let block1 = app.Create.DivBlock('section__input__create', 'Название:', 'input__create', 'title')
+            //let block1 = createDivBlock('section__input__create', 'Название:', 'input__create', 'title');
+            let block2 = createDivBlock('section__input__create', 'Описание:', 'input__create__about', 'about');
+            let block3 = createDivBlock('section__input__create', 'Цена:', 'input__create', 'sum');
 
             let block4 = document.createElement('div');
             block4.className = 'section__picture';
             let img = document.createElement('img');
             img.className = 'product__image';
-            //img.src = button.files[0];
 
             let button = document.createElement('input');
             button.type = 'file';
             button.id = 'image';
-            //button.accepts=".jpg, .jpeg, .png, .gif"
             button.className = 'button';
             button.textContent = 'Загрузить фото';
 
-            //Предпросмотр картинки
             button.addEventListener('change', function (event) {
                 const file = event.target.files[0];
                 const reader = new FileReader();
@@ -56,31 +31,12 @@
                 reader.readAsDataURL(file);
             });
 
-            // let block4 = document.createElement('div');
-            // block4.className = 'section__picture';
-            // let img = document.createElement('input');
-            // img.className = 'product__image';
-            // img.type = 'file';
-            // img.id = 'image';
-            // let button = document.createElement('button');
-            // button.className = 'button';
-            // button.textContent = 'Загрузить фото';
-            // button.addEventListener("click", upload);
-
             let block5 = document.createElement('div');
             block5.className = 'section__save';
-            let buttonSave = document.createElement('button');
-            buttonSave.className = 'button__save';
-            buttonSave.textContent = 'Сохранить';
-            buttonSave.onclick = createProduct;
-            //buttonSave.addEventListener("click", goToSave);
 
-            block1.append(p1);
-            block1.append(input1);
-            block2.append(p2);
-            block2.append(input2);
-            block3.append(p3);
-            block3.append(input3);
+            let buttonSave = app.Create.buttonElement('button__save', 'Сохранить', createProduct);
+            //let buttonSave = createButtonElement('button__save', 'Сохранить', createProduct);
+
             block4.append(img);
             block4.append(button);
             block5.append(buttonSave);
@@ -94,4 +50,33 @@
             main.append(section);
         }
     }
+
+    function createDivBlock(blockClass, pText, inputClass, inputId) {
+        let block = document.createElement('div');
+        block.className = blockClass;
+
+        let p = document.createElement('p');
+        p.className = 'p__input';
+        p.textContent = pText;
+
+        let input = document.createElement('input');
+        input.className = inputClass;
+        input.id = inputId;
+
+        block.append(input);
+        block.append(p);
+
+        return block;
+    }
+
+    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
+        let button = document.createElement('button');
+
+        button.className = buttonClass;
+        button.textContent = buttonText;
+        button.onclick = buttonOnclick;
+
+        return button;
+    }
+
 })(AdsBoard);

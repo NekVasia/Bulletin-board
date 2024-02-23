@@ -15,20 +15,9 @@
             let burger = document.createElement('div');
             burger.className = 'header__burger';
 
-            let list = document.createElement('button');
-            list.className = 'header__burger__item h1';
-            list.textContent = 'Лента';
-            list.addEventListener("click", goToProduct);
-
-            let myList = document.createElement('button');
-            myList.className = 'header__burger__item h1';
-            myList.textContent = 'Мои объявления';
-            myList.addEventListener("click", getMyProduct);
-
-            let exit = document.createElement('button');
-            exit.className = 'header__burger__item h1';
-            exit.textContent = 'Выход';
-            exit.addEventListener("click", goToExit);
+            let list = createButtonElement('header__burger__item h1', 'Лента', goToProduct);
+            let myList = createButtonElement('header__burger__item h1', 'Мои объявления', getMyProduct);
+            let exit = createButtonElement('header__burger__item h1', 'Выход', goToExit);
 
             logo.append(title);
 
@@ -41,6 +30,16 @@
 
             header.append(container);
         }
+    }
+
+    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
+        let button = document.createElement('button');
+
+        button.className = buttonClass;
+        button.textContent = buttonText;
+        button.onclick = buttonOnclick;
+
+        return button;
     }
 
     function goToProduct() {

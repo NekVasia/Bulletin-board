@@ -14,10 +14,8 @@
             imageElement.className = "product__image-fit";
             imageElement.alt = "Фотка товара";
             imageElement.src  = 'images/noProductPictures.png';
-            let phone = document.createElement('button');
-            phone.className = 'product__phone';
-            phone.textContent = 'Показать телефон';
-            phone.addEventListener('click', goToPhone);
+
+            let buttonPhone = createButtonElement('product__phone', 'Показать телефон', goToPhone);
 
             let block2 = document.createElement('div');
             block2.className = 'product__block product__block__grow';
@@ -46,7 +44,7 @@
             image.append(imageElement);
 
             block1.append(image);
-            block1.append(phone);
+            block1.append(buttonPhone);
 
             cell__content.append(title);
             cell__content.append(about);
@@ -63,4 +61,15 @@
             main.append(section);
         }
     }
+
+    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
+        let button = document.createElement('button');
+
+        button.className = buttonClass;
+        button.textContent = buttonText;
+        button.onclick = buttonOnclick;
+
+        return button;
+    }
+
 })(AdsBoard);

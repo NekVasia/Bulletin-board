@@ -13,43 +13,14 @@
             title.className = 'section__container_title h2';
             title.textContent = 'Вход';
 
-            let cell1 = document.createElement('div');
-            cell1.className = 'section__container__cell';
-            let input1 = document.createElement('input');
-            input1.className = 'section__input';
-            input1.id = 'email';
-            let p1 = document.createElement('p');
-            p1.className = 'p__input';
-            p1.textContent = 'E-mail';
-
-            let cell2 = document.createElement('div');
-            cell2.className = 'section__container__cell';
-            let input2 = document.createElement('input');
-            input2.className = 'section__input';
-            input2.id = 'password';
-            let p2 = document.createElement('p');
-            p2.className = 'p__input';
-            p2.textContent = 'Пароль';
+            let cell1 = createInputCell('email', ' Логин', 'E-mail');
+            let cell2 = createInputCell('password', ' Пароль', 'Пароль');
 
             let buttonContainer = document.createElement('div');
             buttonContainer.className = 'section__container__button';
 
-            let buttonLogin = document.createElement('button');
-            buttonLogin.onclick = login;
-            buttonLogin.className = 'section__button p__button';
-            buttonLogin.textContent = 'Вход';
-
-            let buttonRegistration = document.createElement('button');
-            buttonRegistration.className = 'section__button p__button';
-            buttonRegistration.textContent = 'Зарегистрироваться';
-
-            buttonRegistration.addEventListener("click", goToRegister);
-
-            cell1.append(input1);
-            cell1.append(p1);
-
-            cell2.append(input2);
-            cell2.append(p2);
+            let buttonLogin = createButtonElement('section__button p__button', 'Войти', login);
+            let buttonRegistration = createButtonElement('section__button p__button', 'Зарегистрироваться', goToRegister);
 
             buttonContainer.append(buttonLogin);
             buttonContainer.append(buttonRegistration);
@@ -63,6 +34,35 @@
 
             main.append(section);
         }
+    }
+
+    function createInputCell(inputId, inputPlaceholder, pText) {
+        let cell = document.createElement('div');
+        cell.className = 'section__container__cell';
+
+        let input = document.createElement('input');
+        input.className = 'section__input';
+        input.id = inputId;
+        input.placeholder = inputPlaceholder;
+
+        let p = document.createElement('p');
+        p.className = 'p__input';
+        p.textContent = pText;
+
+        cell.append(input);
+        cell.append(p);
+
+        return cell;
+    }
+
+    function createButtonElement(buttonClass, buttonText, buttonOnclick) {
+        let button = document.createElement('button');
+
+        button.className = buttonClass;
+        button.textContent = buttonText;
+        button.onclick = buttonOnclick;
+
+        return button;
     }
 
     function goToRegister() {
