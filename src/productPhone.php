@@ -1,12 +1,10 @@
 <?php
-
 require_once('class/Database.php');
-require_once('class/ShowPhone.php');
+require_once('class/Product.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") { //Вывод списка товаров
     $productId = $_GET['productId'];
-    //echo $productId;
 
-    $phoneShow = new ShowPhone();
+    $phoneShow = new Product();
     $phoneShow -> showPhone($productId);
 }

@@ -1,9 +1,9 @@
 <?php
 require_once("Database.php");
 
-class UserLogin
+class User
 {
-    public function userLogin($email, $password)
+    public function login($email, $password)
     {
         if (empty($email) || empty($password)) {
             echo json_encode(["code" => 0, "message" => "Не заполнены данные пользователя"]);
@@ -24,11 +24,29 @@ class UserLogin
             echo json_encode(["code" => 0, "message" => "Неверный пароль!"]);
             return;
         }
-//        $userId = session_create_id();
-//        session_id($userId);
         $userId = $userData['user_id']; //Вытаскиваем id из базы данных
         $_SESSION['loggedIn'] = true; //Устанавливаем авторизацию в сессии
         $_SESSION['user_id'] = $userId; //Устанавливаем id для сессии
         echo json_encode(["code" => 1, "message" => "Успешная авторизация"]);
     }
+
+    public function registration($name, $email, $password, $phone)
+    {
+        $checkRegistration = Database::query("SELECT email FROM users WHERE email = '$email'");
+        if (mysqli_num_rows($checkRegistration) == 1) {
+            echo json_encode(["code" => 0, "message" => "Данный пользователь зарегистрирован!"]);
+            return;
+        }
+        if (empty($name) && empty($email) && empty($password) && empty($phone)) {
+            echo json_encode(["code" => 0, "message" => "Некорректные данные для регистрации пользователя!"]);
+            return;
+        }
+        $registration = Database::query("INSERT INTO users (name, email, password, phone) VALUES ('$name', '$email', '$password', '$phone')");
+        if ($registration) { // Успешная регистрация
+            echo json_encode(["code" => 1, "message" => "Пользователь успешно зарегистрирован"]);
+        } else { // Ошибка при регистрации
+            echo json_encode(["code" => 0, "message" => "Ошибка при регистрации пользователя!"]);
+        }
+    }
 }
+

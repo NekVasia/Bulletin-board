@@ -2,7 +2,6 @@
 
 class Database
 {
-
     private static $connection; //Создаем соединение в SQL
     public static function connect() {
         if (empty(self::$connection)) {

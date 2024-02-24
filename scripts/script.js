@@ -1,31 +1,5 @@
 let AdsBoard = {};
 
-const currentUrl = window.location.href;
-console.log(currentUrl);
-
-const strGET = window.location.search.replace( '?', '');
-console.log(strGET);
-
-// if (strGET === 'page'){
-//     getMyProduct();
-// }
-
-let params = window
-    .location
-    .search
-    .replace('?','')
-    .split('&')
-    .reduce(
-        function(p,e){
-            var a = e.split('=');
-            p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
-            return p;
-        },
-        {}
-    );
-
-console.log( params['data']);
-
 function getCookie(name) { //Функция проверки куки
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -42,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 })
 
-//Регистрация пользователя
 const registration = () => { //Функция для регистрации
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
@@ -62,7 +35,7 @@ const registration = () => { //Функция для регистрации
         password: password
     };
 
-    fetch("../src/user.php", {
+    fetch("../src/userRegistration.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -86,7 +59,7 @@ const login = () => { //Функция для авторизации
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    fetch(`../src/user.php?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`, {
+    fetch(`../src/userLogin.php?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -105,8 +78,10 @@ const login = () => { //Функция для авторизации
         });
 }
 
+
+
 const getProduct = () => {
-    fetch(`../src/product.php`, {
+    fetch(`../src/productShow.php`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -129,9 +104,8 @@ const getProduct = () => {
         });
 }
 
-
 const getMyProduct = () => {
-    fetch(`../src/productMy.php`, {
+    fetch(`../src/productShowMy.php`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -172,7 +146,7 @@ const createProduct = () => { //Функция для добавления но�
     formData.append('sum', sum);
     formData.append('image', image);
 
-    fetch(`../src/product.php`, {
+    fetch(`../src/productCreate.php`, {
         method: "POST",
         body: formData,
     })
@@ -184,7 +158,6 @@ const createProduct = () => { //Функция для добавления но�
             console.log(error);
         });
 }
-
 
 const goToChangeProduct = (event) => {
     const section = event.target.closest('.product');
@@ -206,7 +179,6 @@ const goToChangeProduct = (event) => {
     AdsBoard.pageChangeProduct.draw(previewData);
 }
 
-
 const changeProduct = () => { //Функция для редактирования товара
     const productId = document.querySelector('.product__create').id;
     const title = document.getElementById('title').value;
@@ -221,7 +193,7 @@ const changeProduct = () => { //Функция для редактировани
     formData.append('sum', sum);
     formData.append('image', image);
 
-    fetch(`../src/productMy.php`, {
+    fetch(`../src/productChange.php`, {
         method: "POST",
         body: formData,
     })
@@ -235,13 +207,11 @@ const changeProduct = () => { //Функция для редактировани
         });
 }
 
-
-
 const deleteProduct = (event) => {
     let section = event.target.closest('.product');
     let productId = section.id;
 
-    fetch(`../src/product.php?productId=${encodeURIComponent(productId)}`, {
+    fetch(`../src/productDelete.php?productId=${encodeURIComponent(productId)}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -255,13 +225,11 @@ const deleteProduct = (event) => {
         })
 }
 
-
-
 const goToPhone = (event) =>{
     const section = event.target.closest('.product');
     const productId = section.id;
 
-    fetch(`../src/phone.php?productId=${encodeURIComponent(productId)}`, {
+    fetch(`../src/productPhone.php?productId=${encodeURIComponent(productId)}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
