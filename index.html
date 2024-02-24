@@ -3,146 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Bulletin board</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="shortcut icon" href="images/hat.png">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="shortcut icon" href="Image/Site/hat.png">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script src="scripts/script.js"></script>
-    <script src="scripts/pageHeader.js"></script>
-    <script src="scripts/pageLogin.js"></script>
-    <script src="scripts/pageRegistration.js"></script>
-    <script src="scripts/pageProduct.js"></script>
-    <script src="scripts/pageProductPhone.js"></script>
-    <script src="scripts/pageHeaderAfterLogin.js"></script>
-    <script src="scripts/pageMyProduct.js"></script>
-    <script src="scripts/pageMyProductCreate.js"></script>
-    <script src="scripts/pageMyProductEmpty.js"></script>
-    <script src="scripts/pageCreateProduct.js"></script>
-    <script src="scripts/pageChangeProduct.js"></script>
-    <script src="scripts/HTML.js"></script>
-
+    <script src="Services/script.js"></script>
+    <script src="Pages/Templates/pageHeader.js"></script>
+    <script src="Pages/Templates/pageLogin.js"></script>
+    <script src="Pages/Templates/pageRegistration.js"></script>
+    <script src="Pages/Templates/pageProduct.js"></script>
+    <script src="Pages/Templates/pageProductPhone.js"></script>
+    <script src="Pages/Templates/pageHeaderAfterLogin.js"></script>
+    <script src="Pages/Templates/pageMyProduct.js"></script>
+    <script src="Pages/Templates/pageMyProductCreate.js"></script>
+    <script src="Pages/Templates/pageMyProductEmpty.js"></script>
+    <script src="Pages/Templates/pageCreateProduct.js"></script>
+    <script src="Pages/Templates/pageChangeProduct.js"></script>
+    <script src="Pages/HTML.js"></script>
 </head>
 
 <body>
-
-<header class="header"></header>
-<main class="main"></main>
-
-
-<!--    <header class="header">-->
-<!--        <div class="header__container">-->
-<!--            <h1 class="h1">МояОбъява.RU</h1>-->
-<!--        </div>-->
-<!--    </header>-->
-
-<!--    <header class="header">-->
-<!--        <div class="header__container">-->
-<!--            <div class="header__logo">-->
-<!--                <h1 class="h1">МояОбъява.RU</h1>-->
-<!--            </div>-->
-<!--            <div class="header__burger">-->
-<!--                <h1 class="header__burger__item h1">Лента</h1>-->
-<!--                <h1 class="header__burger__item h1">Мои объявления</h1>-->
-<!--                <h1 class="header__burger__item h1">Выход</h1>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </header>-->
-
-<!--<main class="main">-->
-<!--    <section class="section">-->
-<!--        <div class="section__container">-->
-<!--            <h2 class="section__container_title h2">Вход</h2>-->
-<!--            <div class="section__container__cell">-->
-<!--                <input class="section__input">-->
-<!--                <p class="p__input">E-mail</p>-->
-<!--            </div>-->
-<!--            <div class="section__container__cell">-->
-<!--                <input class="section__input">-->
-<!--                <p class="p__input">Пароль</p>-->
-<!--            </div>-->
-<!--            <div class="section__container__button">-->
-<!--                <button class="section__button p__button">Вход</button>-->
-<!--                <button class="section__button p__button">Зарегистрироваться</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--</main>-->
-
-<!--<main class="main">-->
-
-<!--    <section class="product" id="***">-->
-<!--        <div class="product__block">-->
-<!--            <div class="product__image">image</div>-->
-<!--            <button class="product__phone">phone</button>-->
-<!--        </div>-->
-<!--    </section>-->
-
-<!--        <div class="product__block product__block__grow">-->
-<!--            <div class="product__cell">-->
-<!--                <div class="product__cell__description">-->
-<!--                    <div class="product__title">title</div>-->
-<!--                    <div class="product__about">about</div>-->
-<!--                </div>-->
-<!--                <div class="product__sum">sum</div>-->
-<!--            </div>-->
-<!--            <div class="product__name">name</div>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--</main>-->
-
-<!--<main class="main">-->
-<!--    <section class="product">-->
-<!--        <div class="product__block">-->
-<!--            <div class="product__image">image</div>-->
-<!--        </div>-->
-<!--        <div class="product__block product__block__grow">-->
-<!--            <div class="product__cell">-->
-<!--                <div class="product__cell__description">-->
-<!--                    <div class="product__title">title</div>-->
-<!--                    <div class="product__about">about</div>-->
-<!--                </div>-->
-<!--                <div class="product__sum">sum</div>-->
-<!--            </div>-->
-<!--            <div class="product__button">-->
-<!--                <button class="button">Изменить</button>-->
-<!--                <button class="button">Удалить</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--</main>-->
-
-<!--<section class="product" id="2">-->
-<!--    <button class="edit">Редактировать</button>-->
-<!--    <button class="delete">Удалить</button>-->
-<!--</section>-->
-<!--<section class="product" id="5">-->
-<!--    <button class="edit">Редактировать</button>-->
-<!--    <button class="delete">Удалить</button>-->
-<!--</section>-->
-
-
-<!--<main class="main">-->
-<!--    <section class="product__create">-->
-<!--        <div class="section__input__create">-->
-<!--            <p class="p__input">Название:</p>-->
-<!--            <input class="input__create">-->
-<!--        </div>-->
-<!--        <div class="section__input__create">-->
-<!--            <p class="p__input">Описание:</p>-->
-<!--            <input class="input__create__about">-->
-<!--        </div>-->
-<!--        <div class="section__input__create">-->
-<!--            <p class="p__input">Цена:</p>-->
-<!--            <input class="input__create">-->
-<!--        </div>-->
-<!--        <div class="section__picture">-->
-<!--            <img class="product__image">-->
-<!--            <button class="button">Загрузить фото</button>-->
-<!--        </div>-->
-<!--        <div class="section__save">-->
-<!--            <button class="button__save">Сохранить</button>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--</main>-->
-
+    <header class="header"></header>
+    <main class="main"></main>
 </body>
 </html>
